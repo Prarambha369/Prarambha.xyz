@@ -1,57 +1,48 @@
 "use client";
 
-import React, { useState } from "react";
-import { projects } from "@/data/projects";
+import React from "react";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/Reveal";
 import { ProjectCard } from "@/components/ProjectCard";
+import { projects, workCategories } from "@/data/cms";
 
 export default function Work() {
-  const [filter, setFilter] = useState("All");
-  const categories = ["All", "OSS", "Community", "Climate", "Tools"];
-
-  const filteredProjects = projects.filter((p) => {
-    if (filter === "All") return true;
-    if (filter === "OSS") return p.tags.includes("OSS");
-    if (filter === "Community") return p.tags.includes("Community");
-    if (filter === "Climate") return p.tags.includes("Climate Tech");
-    if (filter === "Tools") return p.tags.includes("Browser Extension") || p.tags.includes("Desktop") || p.tags.includes("Discord");
-    return true;
-  });
-
   return (
-    <div className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
-      <div className="mb-16">
-        <p className="font-mono text-[10px] tracking-widest uppercase text-primary mb-4">
-          // PORTFOLIO
-        </p>
-        <h1 className="font-display font-bold text-4xl md:text-6xl mb-6">
-          Selected Work
-        </h1>
-        <p className="text-text-2 text-lg max-w-2xl">
-          A collection of ecosystems, tools, and systems built to solve problems or explore "how it works."
-        </p>
-      </div>
+    <div className="flex flex-col">
+      <section className="section-padding pt-40 bg-surface/30 border-b border-border">
+        <div className="container-width">
+          <Reveal>
+            <label className="label-mono text-primary mb-4 block">// PORTFOLIO</label>
+            <h1 className="text-display mb-8">Selected Work</h1>
+            <p className="text-h3 text-text-2 max-w-2xl leading-tight">
+              A collection of communities, tools, and experiments built with a focus on
+              open-source and local impact.
+            </p>
+          </Reveal>
 
-      <div className="flex flex-wrap gap-3 mb-12">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            onClick={() => setFilter(cat)}
-            className={`px-6 py-2 rounded-full text-xs font-mono transition-all ${
-              filter === cat
-                ? "bg-primary text-black"
-                : "border border-border-2 text-text-muted hover:border-text-muted"
-            }`}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
+          <div className="flex flex-wrap gap-4 mt-12">
+            <button className="px-6 py-2 bg-primary text-bg label-mono font-bold">ALL</button>
+            {workCategories.map(cat => (
+              <button key={cat.slug} className="px-6 py-2 bg-surface-2 border border-border label-mono hover:border-primary transition-colors">
+                {cat.name.toUpperCase()}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project} />
-        ))}
-      </div>
+      <section className="section-padding">
+        <div className="container-width">
+          <StaggerContainer>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {projects.map((project) => (
+                <StaggerItem key={project.id}>
+                  <ProjectCard project={project} />
+                </StaggerItem>
+              ))}
+            </div>
+          </StaggerContainer>
+        </div>
+      </section>
     </div>
   );
 }

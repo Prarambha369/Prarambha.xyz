@@ -36,8 +36,23 @@ body {
 }
 
 @layer base {
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-display;
+  h1 { @apply text-h1 font-display; }
+  h2 { @apply text-h2 font-display; }
+  h3 { @apply text-h3 font-display; }
+  p { @apply text-body-m; }
+}
+
+@layer components {
+  .section-padding {
+    @apply py-section px-container;
+  }
+
+  .container-width {
+    @apply max-w-7xl mx-auto w-full;
+  }
+
+  .label-mono {
+    @apply font-mono text-label uppercase tracking-widest text-text-muted;
   }
 }
 
@@ -58,4 +73,19 @@ body {
   opacity: 0.03;
   pointer-events: none;
   z-index: 50;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
 }

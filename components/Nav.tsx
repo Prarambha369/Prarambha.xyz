@@ -5,11 +5,18 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
 
 const navLinks = [
+  { name: "Home", href: "/" },
   { name: "Work", href: "/work" },
   { name: "About", href: "/about" },
-  { name: "OSS", href: "/oss" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
@@ -20,32 +27,42 @@ export const Nav = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass" : "bg-transparent"}`}>
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-display font-bold text-xl tracking-tight">
-          Prarambha<span className="text-primary">.</span>xyz
+    <nav className={cn(
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out",
+      scrolled ? "bg-bg/80 backdrop-blur-xl border-b border-border py-4" : "bg-transparent py-6"
+    )}>
+      <div className="container-width px-container flex items-center justify-between">
+        <Link href="/" className="font-display font-bold text-2xl tracking-tighter group">
+          /PRARAMBHA<span className="text-primary group-hover:animate-pulse">_</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.href ? "text-primary" : "text-text-2 hover:text-text"
-              }`}
+              className={cn(
+                "text-label-mono transition-all hover:text-primary",
+                pathname === link.href ? "text-primary" : "text-text-2"
+              )}
             >
               {link.name}
             </Link>
           ))}
+          <Link
+            href="/contact"
+            className="bg-primary text-bg px-6 py-2.5 text-label-mono font-bold hover:bg-white transition-colors"
+          >
+            LET'S TALK
+          </Link>
         </div>
 
         {/* Mobile Toggle */}
@@ -54,7 +71,7 @@ export const Nav = () => {
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -62,22 +79,30 @@ export const Nav = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-20 bg-bg z-40 md:hidden flex flex-col items-center justify-center gap-8"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 bg-bg z-40 md:hidden flex flex-col p-10 pt-32 gap-8"
           >
-            {navLinks.map((link) => (
-              <Link
+            {navLinks.map((link, i) => (
+              <motion.div
                 key={link.href}
-                href={link.href}
-                className={`text-2xl font-display font-bold ${
-                  pathname === link.href ? "text-primary" : "text-text"
-                }`}
-                onClick={() => setIsOpen(false)}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: i * 0.1 }}
               >
-                {link.name}
-              </Link>
+                <Link
+                  href={link.href}
+                  className={cn(
+                    "text-4xl font-display font-bold tracking-tight",
+                    pathname === link.href ? "text-primary" : "text-text"
+                  )}
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
           </motion.div>
         )}

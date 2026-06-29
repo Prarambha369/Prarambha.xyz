@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import { Zilla_Slab, DM_Mono } from "next/font/google";
+import { Zilla_Slab, DM_Mono, Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { BottomNav } from "@/components/BottomNav";
 
 const zilla = Zilla_Slab({
   subsets: ["latin"],
@@ -15,6 +16,12 @@ const dmMono = DM_Mono({
   subsets: ["latin"],
   weight: ["400", "500"],
   variable: "--font-dm-mono",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -48,9 +55,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${zilla.variable} ${dmMono.variable} font-sans bg-bg text-text min-h-screen flex flex-col`}>
+      <body className={`${zilla.variable} ${dmMono.variable} ${inter.variable} font-sans bg-bg text-text min-h-screen flex flex-col`}>
         <Nav />
         <main className="flex-grow">{children}</main>
+        <BottomNav />
         <Footer />
       </body>
     </html>

@@ -1,0 +1,23 @@
+import { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://prarambha.xyz';
+
+  const routes = [
+    '',
+    '/about',
+    '/work',
+    '/blog',
+    '/contact',
+    '/oss',
+    '/style-guide',
+    '/changelog',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: route === '' ? 1 : 0.8,
+  }));
+
+  return routes;
+}

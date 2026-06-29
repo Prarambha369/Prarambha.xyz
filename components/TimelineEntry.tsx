@@ -1,4 +1,7 @@
+"use client";
+
 import React from "react";
+import { motion } from "framer-motion";
 import { ExperienceEntry } from "@/data/experience";
 
 interface TimelineEntryProps {
@@ -7,41 +10,24 @@ interface TimelineEntryProps {
 
 export const TimelineEntry = ({ entry }: TimelineEntryProps) => {
   return (
-    <div className="relative pl-8 pb-12 last:pb-0">
-      {/* Connector Line */}
-      <div className="absolute left-0 top-2 bottom-0 w-px bg-border group-last:bg-transparent" />
-
-      {/* Dot */}
-      <div className="absolute left-[-4px] top-2 w-[9px] h-[9px] rounded-full bg-primary shadow-[0_0_10px_rgba(255,102,17,0.5)]" />
-
-      <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 mb-2">
-        <h3 className="font-display font-bold text-xl text-text">
-          {entry.role}
-        </h3>
-        <span className="font-mono text-[10px] text-text-muted whitespace-nowrap">
-          {entry.start} — {entry.end}
-        </span>
+    <motion.div
+      whileHover={{ x: 10 }}
+      className="grid grid-cols-1 md:grid-cols-[150px_1fr] gap-8 py-12 border-b border-border group transition-all"
+    >
+      <div className="label-mono pt-2 text-text-muted group-hover:text-primary transition-colors">
+        {entry.start} — {entry.end}
       </div>
 
-      <div className="flex items-center gap-2 mb-4">
-        {entry.orgUrl ? (
-          <a
-            href={entry.orgUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-primary text-sm font-medium hover:underline underline-offset-4"
-          >
-            {entry.org}
-          </a>
-        ) : (
-          <span className="text-primary text-sm font-medium">{entry.org}</span>
-        )}
-        <span className="text-text-muted text-xs">• {entry.type}</span>
-      </div>
+      <div className="space-y-4">
+        <div className="flex flex-col md:flex-row md:items-baseline gap-2 md:gap-4">
+          <h3 className="text-h3">{entry.role}</h3>
+          <span className="text-primary font-mono text-sm tracking-tighter italic">@ {entry.org}</span>
+        </div>
 
-      <p className="text-text-2 text-sm leading-relaxed max-w-2xl">
-        {entry.description}
-      </p>
-    </div>
+        <p className="text-text-2 text-lg max-w-3xl leading-relaxed">
+          {entry.description}
+        </p>
+      </div>
+    </motion.div>
   );
 };

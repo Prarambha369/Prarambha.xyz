@@ -3,85 +3,112 @@
 import React from "react";
 import { Hero } from "@/components/Hero";
 import { StatBar } from "@/components/StatBar";
+import { Marquee } from "@/components/Marquee";
 import { ProjectCard } from "@/components/ProjectCard";
 import { TimelineEntry } from "@/components/TimelineEntry";
 import { Button } from "@/components/Button";
-import { projects } from "@/data/projects";
+import { Reveal, StaggerContainer, StaggerItem } from "@/components/Reveal";
+import { SectionHeader } from "@/components/SectionHeader";
+import { projects } from "@/data/cms";
 import { experience } from "@/data/experience";
-import { motion } from "framer-motion";
 
 export default function Home() {
   return (
-    <div className="flex flex-col gap-0">
+    <div className="flex flex-col">
       <Hero />
       <StatBar />
 
-      {/* Featured Work */}
-      <section className="py-24 px-6 max-w-6xl mx-auto w-full">
-        <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-4">
-          // SELECTED PROJECTS
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
-          {projects.slice(0, 4).map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </div>
-        <div className="mt-16 flex justify-center">
-          <Button variant="secondary" href="/work">
-            View All Projects →
-          </Button>
-        </div>
-      </section>
+      <Marquee items={["Butwal Hacks", "GNOME Nepal", "Open Source", "Ecosystem Building", "Community First", "Building Nepal Tech"]} />
 
-      {/* About Strip */}
-      <section className="py-24 px-6 border-y border-border bg-surface/20">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-          <div>
-            <h2 className="font-display font-bold text-3xl mb-8 leading-tight">
-              I believe the next generation of great software will come from places people aren't looking yet.
-            </h2>
-            <p className="text-text-2 leading-relaxed mb-8">
-              I'm 15, based in Butwal, Nepal. I maintain GNOME Nepal as a top-5 contributor, founded two tech communities, and build open-source tools through NextEra Development. I work entirely from a smartphone.
-            </p>
-            <Button variant="ghost" href="/about">
-              Read full story →
-            </Button>
-          </div>
-          <div className="font-mono text-cyan space-y-4">
-            <p className="text-[10px] text-text-muted uppercase tracking-widest mb-6">// TECH STACK</p>
-            <div className="grid grid-cols-1 gap-4 text-sm md:text-base">
-              <div>C++ · Python · Next.js</div>
-              <div>TypeScript · SQL · Git</div>
-              <div>Linux · Bash · REST APIs</div>
+      {/* Intro Section */}
+      <section className="section-padding bg-surface/30">
+        <div className="container-width">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+            <div className="lg:col-span-7">
+              <SectionHeader
+                label="INTRODUCTION"
+                title="The next generation of software comes from places people aren't looking yet."
+                description="Based in Butwal, Nepal, I'm building the tools and communities that the next generation of developers will use to define the future of the web. Maintaining GNOME Nepal, founding local ecosystems, and building OSS."
+              />
+              <Reveal delay={0.5}>
+                <Button variant="ghost" href="/about">Read Full Story →</Button>
+              </Reveal>
+            </div>
+            <div className="lg:col-span-5 flex flex-col justify-end">
+              <Reveal delay={0.6}>
+                <div className="bg-bg border border-border p-8 space-y-6 group hover:border-primary transition-colors duration-500">
+                  <label className="label-mono text-primary">// TECH STACK</label>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <span className="block text-h3">C++</span>
+                      <span className="block text-h3">Python</span>
+                    </div>
+                    <div className="space-y-2">
+                      <span className="block text-h3">Next.js</span>
+                      <span className="block text-h3">Linux</span>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Experience Timeline */}
-      <section className="py-24 px-6 max-w-6xl mx-auto w-full">
-        <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-12">
-          // EXPERIENCE
-        </p>
-        <div className="flex flex-col">
-          {experience.map((exp, index) => (
-            <TimelineEntry key={index} entry={exp} />
-          ))}
+      {/* Featured Work */}
+      <section className="section-padding">
+        <div className="container-width">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+            <SectionHeader
+              label="SELECTED WORK"
+              title="Building meaningful digital experiences."
+            />
+            <Reveal delay={0.4}>
+              <Button variant="secondary" href="/work" className="mb-16">View All Work</Button>
+            </Reveal>
+          </div>
+
+          <StaggerContainer>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {projects.filter(p => p.featured).map((project) => (
+                <StaggerItem key={project.id}>
+                  <ProjectCard project={project} />
+                </StaggerItem>
+              ))}
+            </div>
+          </StaggerContainer>
         </div>
       </section>
 
-      {/* Certifications / Bottom CTA */}
-      <section className="py-24 px-6 text-center bg-primary/5">
-        <h2 className="font-display font-bold text-3xl md:text-4xl mb-8">
-          Let's build something different.
-        </h2>
-        <div className="flex justify-center gap-4">
-          <Button href="/contact">
-            Get in touch
-          </Button>
-          <Button variant="secondary" href="/oss">
-            View OSS
-          </Button>
+      {/* Experience Section */}
+      <section className="section-padding bg-surface-2 border-y border-border">
+        <div className="container-width">
+          <SectionHeader
+            label="JOURNEY"
+            title="Ecosystem building & Community scaling."
+          />
+
+          <div className="mt-16">
+            {experience.map((exp, index) => (
+              <TimelineEntry key={index} entry={exp} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="section-padding text-center relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary/5 blur-[120px] pointer-events-none" />
+        <div className="container-width relative z-10">
+          <Reveal>
+            <h2 className="text-display mb-12">Let's build<br />the future.</h2>
+          </Reveal>
+          <Reveal delay={0.4}>
+            <div className="flex flex-wrap justify-center gap-8">
+              <Button href="/contact">Get In Touch</Button>
+              <Button variant="secondary" href="/work">See More Work</Button>
+            </div>
+          </Reveal>
         </div>
       </section>
     </div>

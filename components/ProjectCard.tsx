@@ -2,9 +2,9 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Tag } from "./Tag";
-import { Github, ExternalLink } from "lucide-react";
-import { Project } from "@/data/projects";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
+import { Project } from "@/data/types";
 
 interface ProjectCardProps {
   project: Project;
@@ -12,53 +12,41 @@ interface ProjectCardProps {
 
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
-    <motion.div
-      whileHover={{ y: -4, borderColor: "rgba(255, 102, 17, 0.4)" }}
-      className="group p-8 border border-border bg-surface-2 rounded-lg flex flex-col h-full transition-all duration-300"
-    >
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </div>
+    <Link href={`/work/${project.id}`} className="group block h-full">
+      <motion.div
+        whileHover={{ y: -8 }}
+        className="relative flex flex-col h-full bg-surface-2 border border-border overflow-hidden"
+      >
+        {/* Image Container */}
+        <div className="relative aspect-[4/3] overflow-hidden bg-bg">
+          <motion.img
+            src={project.coverImage}
+            alt={project.title}
+            className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100"
+          />
+          <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <h3 className="font-display font-bold text-2xl mb-4 group-hover:text-primary transition-colors">
-        {project.title}
-      </h3>
+          <div className="absolute top-6 right-6 p-3 bg-bg border border-border group-hover:bg-primary group-hover:border-primary transition-colors duration-300">
+            <ArrowUpRight size={20} className="group-hover:text-bg transition-colors" />
+          </div>
+        </div>
 
-      <p className="text-text-2 text-sm leading-relaxed mb-8 flex-grow">
-        {project.description}
-      </p>
+        {/* Content */}
+        <div className="p-8 flex flex-col flex-grow">
+          <div className="flex justify-between items-start mb-4">
+            <span className="label-mono text-primary">{project.category.toUpperCase()}</span>
+            <span className="label-mono opacity-50">{project.year}</span>
+          </div>
 
-      <div className="flex items-center gap-4 pt-6 border-t border-border mt-auto">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-mono"
-          >
-            <Github size={14} />
-            GitHub
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-mono"
-          >
-            <ExternalLink size={14} />
-            Live
-          </a>
-        )}
-        {!project.githubUrl && !project.liveUrl && (
-          <span className="text-text-muted/50 text-[10px] font-mono italic">
-            In Development
-          </span>
-        )}
-      </div>
-    </motion.div>
+          <h3 className="text-h3 mb-4 group-hover:text-primary transition-colors">
+            {project.title}
+          </h3>
+
+          <p className="text-text-2 text-sm line-clamp-2 mt-auto">
+            {project.goals}
+          </p>
+        </div>
+      </motion.div>
+    </Link>
   );
 };

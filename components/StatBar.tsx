@@ -4,28 +4,26 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const stats = [
-  { value: "2", label: "Events organized" },
-  { value: "90+", label: "Participants" },
-  { value: "680+", label: "Git commits" },
-  { value: "25+", label: "Discord servers" },
+  { label: "Founded", value: "Butwal Hacks" },
+  { label: "Maintaining", value: "GNOME Nepal" },
+  { label: "Community", value: "NextEra Dev" },
+  { label: "Location", value: "Nepal 🇳🇵" },
 ];
 
 export const StatBar = () => {
   return (
-    <div className="border-y border-border bg-surface/30">
-      <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 divide-x divide-border">
+    <div className="bg-bg border-y border-border py-4 relative z-20">
+      <div className="container-width px-container flex flex-wrap justify-between gap-8 md:gap-4">
         {stats.map((stat, i) => (
           <motion.div
-            key={i}
-            whileHover={{ backgroundColor: "rgba(255, 102, 17, 0.03)" }}
-            className="p-8 group transition-colors"
+            key={stat.label}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8 + i * 0.1 }}
+            className="flex items-center gap-3"
           >
-            <div className="font-mono text-3xl font-bold mb-1 group-hover:text-primary transition-colors">
-              {stat.value}
-            </div>
-            <div className="font-mono text-[10px] text-text-muted uppercase tracking-widest">
-              {stat.label}
-            </div>
+            <span className="label-mono text-text-muted">{stat.label}:</span>
+            <span className="font-mono text-xs font-bold text-primary uppercase">{stat.value}</span>
           </motion.div>
         ))}
       </div>
