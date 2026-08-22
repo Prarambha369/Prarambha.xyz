@@ -1,0 +1,3 @@
+## 2026-05-25 - Focus Visible Rings & ARIA State Attributes for Icon Controls
+**Learning:** Icon-only controls (like mobile toggles and social links) often lack explicit screen-reader accessibility labels (`aria-label`, `aria-expanded`) and visible focus states for keyboard-only navigation. Combining Tailwind's `focus-visible:ring-2` with `focus-visible:ring-primary` and `focus-visible:ring-offset-2` provides shadcn-level focus indicator precision on dark mode backgrounds without adding visual noise during mouse clicks.
+**Action:** Always check interactive icon links and mobile menu toggles for both semantic screen-reader properties (`aria-label`, `aria-expanded`) and accessible `focus-visible` ring offsets on dark backgrounds.

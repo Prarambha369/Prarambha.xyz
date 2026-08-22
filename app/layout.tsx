@@ -49,8 +49,16 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`${zilla.variable} ${dmMono.variable} font-sans bg-bg text-text min-h-screen flex flex-col`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-surface focus:text-primary focus:border focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:ring-offset-bg rounded-md m-2"
+        >
+          Skip to main content
+        </a>
         <Nav />
-        <main className="flex-grow">{children}</main>
+        <main id="main-content" className="flex-grow">
+          {children}
+        </main>
         <Footer />
       </body>
     </html>

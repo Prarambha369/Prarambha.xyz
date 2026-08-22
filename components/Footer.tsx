@@ -7,7 +7,10 @@ export const Footer = () => {
     <footer className="border-t border-border py-12 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         <div className="space-y-4">
-          <Link href="/" className="font-display font-bold text-xl tracking-tight">
+          <Link
+            href="/"
+            className="font-display font-bold text-xl tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
             Prarambha<span className="text-primary">.</span>xyz
           </Link>
           <p className="text-text-muted text-sm max-w-xs">
@@ -16,13 +19,29 @@ export const Footer = () => {
         </div>
 
         <div className="flex gap-6">
-          <a href="https://github.com/Prarambha369" target="_blank" rel="noopener noreferrer" className="text-text-2 hover:text-primary transition-colors">
+          <a
+            href="https://github.com/Prarambha369"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub profile"
+            className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
             <Github size={20} />
           </a>
-          <a href="https://linkedin.com/in/misterbashyal" target="_blank" rel="noopener noreferrer" className="text-text-2 hover:text-primary transition-colors">
+          <a
+            href="https://linkedin.com/in/misterbashyal"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn profile"
+            className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
             <Linkedin size={20} />
           </a>
-          <a href="mailto:prarambha@butwalhacks.com" className="text-text-2 hover:text-primary transition-colors">
+          <a
+            href="mailto:prarambha@butwalhacks.com"
+            aria-label="Send email"
+            className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
             <Mail size={20} />
           </a>
         </div>
