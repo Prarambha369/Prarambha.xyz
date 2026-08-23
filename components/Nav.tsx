@@ -29,7 +29,10 @@ export const Nav = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass" : "bg-transparent"}`}>
       <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-display font-bold text-xl tracking-tight">
+        <Link
+          href="/"
+          className="font-display font-bold text-xl tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+        >
           Prarambha<span className="text-primary">.</span>xyz
         </Link>
 
@@ -39,7 +42,7 @@ export const Nav = () => {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors ${
+              className={`text-sm font-medium transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
                 pathname === link.href ? "text-primary" : "text-text-2 hover:text-text"
               }`}
             >
@@ -50,9 +53,10 @@ export const Nav = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-text p-2"
+          className="md:hidden text-text p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -71,7 +75,7 @@ export const Nav = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`text-2xl font-display font-bold ${
+                className={`text-2xl font-display font-bold rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
                   pathname === link.href ? "text-primary" : "text-text"
                 }`}
                 onClick={() => setIsOpen(false)}

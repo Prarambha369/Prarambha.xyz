@@ -23,7 +23,8 @@ export const Button = ({
   external,
   ...props
 }: ButtonProps) => {
-  const baseStyles = "inline-flex items-center justify-center font-medium px-5 py-2.5 rounded-full text-sm transition-colors duration-150";
+  const baseStyles =
+    "inline-flex items-center justify-center font-medium px-5 py-2.5 rounded-full text-sm transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
 
   const variants = {
     primary: "bg-primary text-black hover:bg-[#FF8040]",
