@@ -48,7 +48,7 @@ export const Hero = () => {
           </motion.h2>
 
           <motion.p variants={item} className="text-text-2 text-base md:text-lg max-w-xl mb-12 leading-relaxed">
-            I founded Butwal Hacks at 15. No institutional backing. Organized game jams & hackathons with MLH, Google Gemini, and Lumbini Province Police — in under a year.
+            Founded Butwal Hacks at 15. Co-organized Hack4Safety 2083 with Lumbini Province Police, contributed to UbuCon Asia, and led workshops on Git, GitHub, & CS fundamentals across Nepal.
           </motion.p>
 
           <motion.div variants={item} className="flex flex-wrap gap-4">
