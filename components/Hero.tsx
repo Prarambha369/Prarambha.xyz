@@ -71,6 +71,7 @@ export const Hero = () => {
                 alt="Prarambha Bashyal receiving an award"
                 fill
                 priority
+                sizes="(min-width: 1024px) 18rem, (min-width: 640px) 16rem, 14rem"
                 className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent opacity-60" />

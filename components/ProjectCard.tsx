@@ -10,6 +10,12 @@ interface ProjectCardProps {
   project: Project;
 }
 
+const statusLabels: Record<Project['status'], string> = {
+  live: 'Live',
+  oss: 'Open Source',
+  'in-development': 'In Development',
+};
+
 export const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <motion.div
@@ -23,7 +29,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           ))}
         </div>
         <span className="font-mono text-[10px] uppercase px-2 py-0.5 rounded border border-border-2 text-text-muted">
-          {project.status}
+          {statusLabels[project.status]}
         </span>
       </div>
 

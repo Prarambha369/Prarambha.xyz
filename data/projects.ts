@@ -23,7 +23,7 @@ export const projects: Project[] = [
   {
     id: 'hisab-sathi',
     title: 'Hisab Sathi',
-    tags: ['FinTech', 'AI', 'Kotlin'],
+    tags: ['FinTech', 'AI', 'Kotlin', 'OSS'],
     description: '100% private, on-device financial tracking manager that parses Nepali bank SMS and PDF statements into a clean, searchable timeline with local AI assistance.',
     stack: ['Kotlin', 'Android', 'On-Device AI'],
     liveUrl: null,
@@ -33,7 +33,7 @@ export const projects: Project[] = [
   {
     id: 'misterstream-cli',
     title: 'mrstream-cli',
-    tags: ['CLI', 'Shell', 'Media'],
+    tags: ['CLI', 'Shell', 'Media', 'OSS'],
     description: 'Terminal-based CLI for live sports streaming. Ethical, modular, and integrated with mpv and fzf for seamless command-line video playback.',
     stack: ['Shell', 'mpv', 'fzf', 'Bash'],
     liveUrl: null,
@@ -53,7 +53,7 @@ export const projects: Project[] = [
   {
     id: 'bagh-chal',
     title: 'Bagh-Chal',
-    tags: ['Game', 'Nepali Culture'],
+    tags: ['Game', 'Nepali Culture', 'OSS'],
     description: 'Open-source digital adaptation of Bagh-Chal, the traditional strategy board game of Nepal, built to preserve and digitize local cultural games.',
     stack: ['HTML5', 'CSS', 'JavaScript'],
     liveUrl: null,
@@ -63,7 +63,7 @@ export const projects: Project[] = [
   {
     id: 'tiger-bot',
     title: 'Tiger-Bot',
-    tags: ['Discord', 'Python'],
+    tags: ['Discord', 'Python', 'OSS'],
     description: 'Discord server management and community automation bot, deployed across 25+ servers through community-driven open-source development.',
     stack: ['Python', 'Discord API'],
     liveUrl: null,

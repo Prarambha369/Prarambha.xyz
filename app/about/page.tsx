@@ -4,7 +4,6 @@ import React from "react";
 import Image from "next/image";
 import { TimelineEntry } from "@/components/TimelineEntry";
 import { experience } from "@/data/experience";
-import { Button } from "@/components/Button";
 import { Github, Linkedin, Mail, MapPin, Code, Cpu, Award } from "lucide-react";
 
 export default function About() {
@@ -35,6 +34,7 @@ export default function About() {
                 src="/pfp.jpg"
                 alt="Prarambha Bashyal Profile Picture"
                 fill
+                sizes="(min-width: 768px) 18rem, 100vw"
                 className="object-cover object-top"
               />
             </div>
@@ -50,13 +50,26 @@ export default function About() {
               </div>
             </div>
             <div className="pt-4 border-t border-border flex flex-col gap-3">
-              <a href="https://github.com/Prarambha369" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium">
+              <a
+                href="https://github.com/Prarambha369"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
                 <Github size={18} /> GitHub Profile
               </a>
-              <a href="https://linkedin.com/in/misterbashyal" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium">
+              <a
+                href="https://linkedin.com/in/misterbashyal"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
                 <Linkedin size={18} /> LinkedIn Profile
               </a>
-              <a href="mailto:prarambha@butwalhacks.com" className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium">
+              <a
+                href="mailto:prarambha@butwalhacks.com"
+                className="flex items-center gap-3 text-sm text-text-2 hover:text-primary transition-colors font-medium rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              >
                 <Mail size={18} /> Direct Email
               </a>
             </div>
@@ -64,7 +77,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* Core Competencies */}
+      {/* Technical Skills */}
       <div className="mb-20">
         <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-8">
           // TECHNICAL SKILLS & STACK
