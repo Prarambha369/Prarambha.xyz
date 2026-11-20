@@ -2,12 +2,13 @@
 
 import React from "react";
 import { motion } from "framer-motion";
+import { githubStats } from "@/data/projects";
 
 const stats = [
-  { value: "2", label: "Events organized" },
-  { value: "90+", label: "Participants" },
-  { value: "680+", label: "Git commits" },
-  { value: "25+", label: "Discord servers" },
+  { value: "90+", label: "Hackathon participants" },
+  { value: `${githubStats.originalRepos}`, label: "Open-source repos" },
+  { value: `${githubStats.mergedPRs}`, label: "Merged pull requests" },
+  { value: `${githubStats.contributionsLastYear}`, label: "Contributions this year" },
 ];
 
 export const StatBar = () => {
