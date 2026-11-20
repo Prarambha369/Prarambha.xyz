@@ -79,19 +79,37 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-6 border-t border-border mt-auto">
         {project.githubUrl && (
-          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-            <Github size={14} />
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Source for ${project.title} (opens in a new tab)`}
+            className={linkClass}
+          >
+            <Github size={14} aria-hidden="true" />
             Source ↗
           </a>
         )}
         {project.liveUrl && (
-          <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Live site for ${project.title} (opens in a new tab)`}
+            className={linkClass}
+          >
             <ExternalLink size={14} aria-hidden="true" />
             Live ↗
           </a>
         )}
         {project.reference && (
-          <a href={project.reference.url} target="_blank" rel="noopener" className={linkClass}>
+          <a
+            href={project.reference.url}
+            target="_blank"
+            rel="noopener"
+            aria-label={`${project.reference.label}, for ${project.title} (opens in a new tab)`}
+            className={linkClass}
+          >
             <ExternalLink size={14} aria-hidden="true" />
             {project.reference.label} ↗
           </a>

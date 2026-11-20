@@ -23,7 +23,7 @@ export default function OSS() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-24">
         {[
-          { icon: <GitCommit className="text-primary" />, value: `${githubStats.contributionsLastYear}`, label: "Contributions this year" },
+          { icon: <GitCommit className="text-primary" />, value: `${githubStats.contributionsLastYear}`, label: `Contributions in the 12 months to ${githubStats.snapshot}` },
           { icon: <Layout className="text-cyan" />, value: `${githubStats.originalRepos}`, label: "Original public repos" },
           { icon: <Star className="text-amber" />, value: "Top-5", label: "GNOME Nepal Contributor" },
         ].map((stat, i) => (

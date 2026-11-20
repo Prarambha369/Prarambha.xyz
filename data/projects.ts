@@ -333,8 +333,12 @@ export const contributions: Contribution[] = [
   },
 ];
 
-// Snapshot from GitHub (Nov 2026).
+// Snapshot from GitHub (Nov 2026). contributionsLastYear is the trailing
+// 12-month total from the profile contribution graph; originalRepos counts
+// public, non-fork repositories (no licence filter); mergedPRs counts merged
+// pull requests to repositories owned by others.
 export const githubStats = {
+  snapshot: "Nov 2026",
   contributionsLastYear: 868,
   originalRepos: 34,
   mergedPRs: 22,

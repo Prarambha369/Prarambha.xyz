@@ -7,7 +7,7 @@ import { githubStats } from "@/data/projects";
 const stats = [
   { value: "5+", label: "Events & workshops" },
   { value: "150+", label: "Participants" },
-  { value: `${githubStats.originalRepos}`, label: "Open-source repos" },
+  { value: `${githubStats.originalRepos}`, label: "Original public repos" },
   { value: `${githubStats.mergedPRs}`, label: "Merged pull requests" },
 ];
 

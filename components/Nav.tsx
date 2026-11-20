@@ -15,11 +15,14 @@ const navLinks = [
 
 export const Nav = () => {
   const pathname = usePathname();
-  // The menu remembers which route it was opened on, so navigating to another
-  // route closes it automatically without a state reset inside an effect.
-  const [openOnPath, setOpenOnPath] = useState<string | null>(null);
-  const isOpen = openOnPath === pathname;
-  const setIsOpen = (open: boolean) => setOpenOnPath(open ? pathname : null);
+  const [isOpen, setIsOpen] = useState(false);
+  // Close the menu whenever the route changes (including Back/Forward). This
+  // adjusts state during render, React's recommended alternative to an effect.
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
+    setIsOpen(false);
+  }
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -31,18 +34,26 @@ export const Nav = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock page scroll while the mobile menu is open; close it on Escape.
+  // Lock page scroll while the mobile menu is open. Close it on Escape, and
+  // when the viewport reaches the md breakpoint (where the menu is hidden), so
+  // the cleanup below always releases the scroll lock.
   useEffect(() => {
     if (!isOpen) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpenOnPath(null);
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const desktop = window.matchMedia("(min-width: 768px)");
+    const onBreakpoint = (e: MediaQueryListEvent) => {
+      if (e.matches) setIsOpen(false);
     };
     window.addEventListener("keydown", onKey);
+    desktop.addEventListener("change", onBreakpoint);
     return () => {
       document.body.style.overflow = prevOverflow;
       window.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onBreakpoint);
     };
   }, [isOpen]);
 
