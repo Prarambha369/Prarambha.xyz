@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin } from "./BrandIcons";
 
 export const Footer = () => {
   return (
@@ -26,7 +27,7 @@ export const Footer = () => {
             aria-label="GitHub profile"
             className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            <Github size={20} />
+            <Github size={20} aria-hidden="true" />
           </a>
           <a
             href="https://linkedin.com/in/misterbashyal"
@@ -35,14 +36,14 @@ export const Footer = () => {
             aria-label="LinkedIn profile"
             className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            <Linkedin size={20} />
+            <Linkedin size={20} aria-hidden="true" />
           </a>
           <a
             href="mailto:prarambha@butwalhacks.com"
             aria-label="Send email"
             className="text-text-2 hover:text-primary transition-colors p-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
           >
-            <Mail size={20} />
+            <Mail size={20} aria-hidden="true" />
           </a>
         </div>
       </div>

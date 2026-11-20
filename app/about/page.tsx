@@ -4,14 +4,15 @@ import React from "react";
 import Image from "next/image";
 import { TimelineEntry } from "@/components/TimelineEntry";
 import { experience } from "@/data/experience";
-import { Github, Linkedin, Mail, MapPin, Code, Cpu, Award } from "lucide-react";
+import { Mail, MapPin, Code, Cpu, Award } from "lucide-react";
+import { Github, Linkedin } from "@/components/BrandIcons";
 
 export default function About() {
   return (
     <div className="pt-32 pb-24 px-6 max-w-5xl mx-auto">
       <div className="mb-16">
         <p className="font-mono text-[10px] tracking-widest uppercase text-primary mb-4">
-          // THE STORY & PROFILE
+          {"// THE STORY & PROFILE"}
         </p>
         <h1 className="font-display font-bold text-4xl md:text-6xl mb-8 leading-tight">
           Systems Architect & Ecosystem Founder based in Butwal, Nepal 🇳🇵
@@ -19,10 +20,10 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-12 items-start">
           <div className="flex-grow space-y-6 text-text-2 leading-relaxed text-base md:text-lg">
             <p>
-              I'm <strong className="text-text">Prarambha (Vishma) Bashyal</strong> — a 15-year-old systems engineer and founder from Butwal, Nepal. I started with a simple question: <em>"Why do hackathons and tech events only happen in major cities inside the Valley?"</em>
+              I’m <strong className="text-text">Prarambha (Vishma) Bashyal</strong> — a 15-year-old systems engineer and founder from Butwal, Nepal. I started with a simple question: <em>“Why do hackathons and tech events only happen in major cities inside the Valley?”</em>
             </p>
             <p>
-              That question led me to establish <strong className="text-text">Butwal Hacks</strong> — Rupandehi's first student-led tech ecosystem. With no institutional backing, we produced Daydream Butwal (a 24-hour game jam for teens) and HackDay Butwal (partnered with Major League Hacking & Google Gemini).
+              That question led me to establish <strong className="text-text">Butwal Hacks</strong> — Rupandehi’s first student-led tech ecosystem. With no institutional backing, we produced Daydream Butwal (a 24-hour game jam for teens) and HackDay Butwal (partnered with Major League Hacking & Google Gemini).
             </p>
             <p>
               Beyond ecosystem building, I maintain <strong className="text-text">GNOME Nepal</strong> as a top contributor, served on the organizing committee of <strong className="text-text">Hack4Safety 2083</strong> (Lumbini Province Police Government Hackathon), and build privacy-first tools through NextEra Development.
@@ -80,7 +81,7 @@ export default function About() {
       {/* Technical Skills */}
       <div className="mb-20">
         <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-8">
-          // TECHNICAL SKILLS & STACK
+          {"// TECHNICAL SKILLS & STACK"}
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           <div className="p-6 border border-border bg-surface-2 rounded-lg space-y-3">
@@ -113,7 +114,7 @@ export default function About() {
       {/* Core Values */}
       <div className="mb-24">
         <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-8">
-          // CORE PHILOSOPHY
+          {"// CORE PHILOSOPHY"}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {[
@@ -133,7 +134,7 @@ export default function About() {
       {/* Timeline */}
       <div>
         <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-12">
-          // EXPERIENCE & MILESTONES
+          {"// EXPERIENCE & MILESTONES"}
         </p>
         <div className="flex flex-col">
           {experience.map((exp, index) => (

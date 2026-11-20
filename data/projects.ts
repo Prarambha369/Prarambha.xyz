@@ -1,83 +1,345 @@
+// Generated from a scan of github.com/Prarambha369 and github.com/NextEra-Development
+// (Nov 2026). Practice repos, config repos and unmodified forks are intentionally left out.
+
+export type ProjectCategory =
+  | "Community"
+  | "Apps"
+  | "Extensions"
+  | "Games"
+  | "Bots & CLI"
+  | "Hardware";
+
 export interface Project {
   id: string;
   title: string;
+  category: ProjectCategory;
   tags: string[];
   description: string;
   stack: string[];
+  year: number;
   liveUrl: string | null;
   githubUrl: string | null;
-  status: 'live' | 'oss' | 'in-development';
+  status: "live" | "oss" | "in-development" | "concept" | "archived";
+  /** Extra outbound link, e.g. the competition a pitch was submitted to or an upstream project. */
+  reference?: { label: string; url: string };
+  featured?: boolean;
+  /** Short proof point shown on cards, e.g. "360 downloads". */
+  highlight?: string;
 }
 
 export const projects: Project[] = [
+  // ── Featured ────────────────────────────────────────────────────────────
   {
-    id: 'butwal-hacks',
-    title: 'Butwal Hacks',
-    tags: ['Community', 'Ecosystem'],
-    description: "Rupandehi's first student-led tech ecosystem. Organized Daydream Butwal and HackDay Butwal (partnered with MLH & Google Gemini), bringing hands-on hackathons to youth outside the Valley.",
-    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
-    liveUrl: 'https://butwalhacks.com',
+    id: "butwal-hacks",
+    title: "Butwal Hacks",
+    category: "Community",
+    tags: ["Community", "Platform", "Next.js"],
+    description:
+      "Rupandehi's first student-led tech ecosystem, and the platform behind it: an ORCID-style public identity for young builders in Nepal, a place to run hackathons, and a record of work they can prove.",
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
+    year: 2025,
+    liveUrl: "https://butwalhacks.com",
+    githubUrl: "https://github.com/Prarambha369/Butwal-Hacks",
+    status: "live",
+    featured: true,
+    highlight: "90+ participants · MLH + Google Gemini",
+  },
+  {
+    id: "hisab-sathi",
+    title: "Hisab Sathi",
+    category: "Apps",
+    tags: ["Android", "Kotlin", "Offline-first"],
+    description:
+      "100% private, on-device expense tracker for Nepal. Parses Nepali bank SMS and PDF statements into a clean, searchable money timeline with budgets, a cash wallet and local AI assistance. A Nepal-focused adaptation of the open-source PennyWise AI tracker.",
+    stack: ["Kotlin", "Android", "On-device AI"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/Hisab-Sathi",
+    status: "oss",
+    featured: true,
+    reference: { label: "Based on PennyWise AI", url: "https://github.com/sarim2000/pennywiseai-tracker" },
+  },
+  {
+    id: "mistertube",
+    title: "MisterTube",
+    category: "Extensions",
+    tags: ["Browser Extension", "OSS"],
+    description:
+      "YouTube without the noise. Hides Shorts, strips Home recommendations, adds a full-width feed, playlist-aware watch page and focus mode. Ships as Firefox (MV2) and Chrome (MV3) builds under NextEra Development.",
+    stack: ["JavaScript", "CSS", "WebExtensions"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/NextEra-Development/MisterTube-V3",
+    status: "oss",
+    featured: true,
+  },
+  {
+    id: "chikem-mod",
+    title: "Chikem Mod",
+    category: "Games",
+    tags: ["Minecraft", "Fabric", "Java"],
+    description:
+      "Fabric mod for Minecraft adding four rideable chicken types (Swiftwing, Dashclaw, Featherfall, Lucky Beak), custom items and multiplayer-compatible mechanics. Published on Modrinth.",
+    stack: ["Java", "Fabric API"],
+    year: 2026,
+    liveUrl: "https://modrinth.com/mod/chikem-mod",
+    githubUrl: "https://github.com/Prarambha369/chikemMod",
+    status: "live",
+    featured: true,
+    highlight: "360+ downloads on Modrinth",
+  },
+
+  // ── Community & events ──────────────────────────────────────────────────
+  {
+    id: "hackday-butwal",
+    title: "HackDay Butwal",
+    category: "Community",
+    tags: ["Hackathon", "MLH", "React"],
+    description:
+      "Site for HackDay Butwal, a one-day beginner-friendly hackathon run with Major League Hacking and Google Gemini on January 17, 2026. Now an archive of the theme, winners, judges and sponsors, with an AI chat assistant.",
+    stack: ["React", "Vite", "TypeScript", "Supabase"],
+    year: 2026,
+    liveUrl: "https://hackday.butwalhacks.com",
+    githubUrl: "https://github.com/Prarambha369/hackday",
+    status: "live",
+  },
+  {
+    id: "cyberutsav-lumbini",
+    title: "CyberUtsav Lumbini",
+    category: "Community",
+    tags: ["Cybersecurity", "Event", "Next.js"],
+    description:
+      "Pre-registration portal for the Lumbini provincial chapter of CyberUtsav, Nepal's biggest student hackathon series. Co-organized by Butwal Hacks; winners advance to the Kathmandu grand finale.",
+    stack: ["Next.js", "TypeScript"],
+    year: 2026,
+    liveUrl: "https://cyber-utsav-lumbini-butwal.vercel.app",
+    githubUrl: "https://github.com/Prarambha369/CyberUtsavLumbini",
+    status: "live",
+  },
+  {
+    id: "hack-club-butwal",
+    title: "Hack Club Butwal",
+    category: "Community",
+    tags: ["Hack Club", "Website"],
+    description:
+      "Website for the Hack Club Butwal student chapter, formerly served at butwal.hackclub.com. The club ran Boba, Swirl and HackCraft workshops and seeded Butwal Hacks.",
+    stack: ["Next.js", "Theme UI"],
+    year: 2025,
+    liveUrl: null, // site is offline (Vercel 404; butwal.hackclub.com has no DNS)
+    githubUrl: "https://github.com/Prarambha369/hcbutwal",
+    status: "archived",
+  },
+
+  // ── Apps & tools ────────────────────────────────────────────────────────
+  {
+    id: "sahuji-cashier",
+    title: "Sahuji Cashier",
+    category: "Apps",
+    tags: ["C++", "POS", "Security"],
+    description:
+      "Console point-of-sale system for small businesses: inventory with low-stock alerts, billing, customer records and admin/user roles. Offline-first and privacy-focused.",
+    stack: ["C++"],
+    year: 2025,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/Sahuji-Cashier",
+    status: "oss",
+    highlight: "15 stars · most-starred repo",
+  },
+  {
+    id: "color-wheel",
+    title: "ColorWheel",
+    category: "Apps",
+    tags: ["React", "Canvas", "Math"],
+    description:
+      "Interactive color wheel drawn from 36,000 individually colored dots, one hue per degree. Pick any point to get HSL, RGB and Hex values.",
+    stack: ["React", "Vite", "Canvas"],
+    year: 2025,
+    liveUrl: "https://color-wheel-prarambha.vercel.app/",
+    githubUrl: "https://github.com/Prarambha369/ColorWheel",
+    status: "live",
+  },
+  {
+    id: "mrfonts",
+    title: "MrFonts",
+    category: "Apps",
+    tags: ["Web", "Fonts"],
+    description:
+      "Showcase of custom fonts with one-click copyable HTML snippets and a light/dark theme, backed by a small font database.",
+    stack: ["HTML", "CSS", "JavaScript"],
+    year: 2025,
+    liveUrl: "https://prarambha369.github.io/MrFonts/",
+    githubUrl: "https://github.com/Prarambha369/MrFonts",
+    status: "live",
+  },
+  {
+    id: "ai-blog",
+    title: "AI Blog Generator",
+    category: "Apps",
+    tags: ["Python", "LLM"],
+    description:
+      "Command-line app that drafts blog posts from a topic and title using OpenAI's GPT-4o, with optional emoji styling.",
+    stack: ["Python", "OpenAI API"],
+    year: 2025,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/aiblog",
+    status: "oss",
+  },
+
+  // ── Extensions ──────────────────────────────────────────────────────────
+  {
+    id: "battery-safety",
+    title: "Battery Safety",
+    category: "Extensions",
+    tags: ["GNOME Shell", "Linux"],
+    description:
+      "GNOME Shell extension for battery health: live charge, capacity and temperature in the top bar, charge thresholds (conservation 40–80%, balanced 20–90%) and TLP profile switching.",
+    stack: ["JavaScript", "GNOME Shell", "TLP"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/battery-safety",
+    status: "oss",
+  },
+  {
+    id: "pirate-translator",
+    title: "Pirate Translator",
+    category: "Extensions",
+    tags: ["Bookmarklet", "Fun"],
+    description:
+      "Bookmarklet that turns any webpage into pirate speak: 250+ slang replacements, random exclamations, optional sea shanty and saved preferences.",
+    stack: ["JavaScript"],
+    year: 2025,
+    liveUrl: "https://prarambha369.github.io/pirateDictionary/",
+    githubUrl: "https://github.com/Prarambha369/pirateDictionary",
+    status: "live",
+  },
+
+  // ── Bots ────────────────────────────────────────────────────────────────
+  {
+    id: "tiger-bot",
+    title: "Tiger-Bot",
+    category: "Bots & CLI",
+    tags: ["Discord", "Node.js"],
+    description:
+      "Multipurpose Discord bot for server management, moderation and giveaways, built on discord.js under NextEra Development.",
+    stack: ["JavaScript", "discord.js"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/NextEra-Development/Tiger-Bot",
+    status: "oss",
+  },
+
+  {
+    id: "mrstream-cli",
+    title: "mrstream-cli",
+    category: "Bots & CLI",
+    tags: ["CLI", "Shell", "Media"],
+    description:
+      "Terminal-native sports event browser and stream launcher written in POSIX shell. Modular and opt-in, with mpv and fzf for fast command-line browsing and playback.",
+    stack: ["Shell", "mpv", "fzf"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/mrstream-cli",
+    status: "oss",
+  },
+
+  // ── Games ───────────────────────────────────────────────────────────────
+  {
+    id: "bagh-chal",
+    title: "Bagh-Chal",
+    category: "Games",
+    tags: ["Nepal", "Board game"],
+    description:
+      "Nepal's traditional tigers-and-goats strategy game, implemented three ways with identical rules: a web version, a Python Tkinter GUI and a C++ console build.",
+    stack: ["JavaScript", "Python", "C++"],
+    year: 2025,
+    liveUrl: "https://prarambha369.github.io/Bagh-Chal/",
+    githubUrl: "https://github.com/Prarambha369/Bagh-Chal",
+    status: "live",
+  },
+  {
+    id: "shiny-octo",
+    title: "Shiny Octo",
+    category: "Games",
+    tags: ["Browser game"],
+    description: "Flappy-style one-button arcade game for the web.",
+    stack: ["JavaScript", "Canvas"],
+    year: 2025,
+    liveUrl: "https://prarambha369.github.io/shiny-octo/",
+    githubUrl: "https://github.com/Prarambha369/shiny-octo",
+    status: "live",
+  },
+
+  // ── Hardware ────────────────────────────────────────────────────────────
+  {
+    id: "river-to-farm",
+    title: "River-to-Farm",
+    category: "Hardware",
+    tags: ["Climate Tech", "IoT", "Pitch"],
+    description:
+      "Concept for a low-cost river monitoring and early-alert system for farmers along the Tinau River basin in Rupandehi District. Pitched to The Earth Prize 2026, the global sustainability competition for students aged 13–19 run by The Earth Foundation.",
+    stack: ["IoT sensors", "Data"],
+    year: 2026,
+    liveUrl: null,
     githubUrl: null,
-    status: 'live',
-  },
-  {
-    id: 'hisab-sathi',
-    title: 'Hisab Sathi',
-    tags: ['FinTech', 'AI', 'Kotlin', 'OSS'],
-    description: '100% private, on-device financial tracking manager that parses Nepali bank SMS and PDF statements into a clean, searchable timeline with local AI assistance.',
-    stack: ['Kotlin', 'Android', 'On-Device AI'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Prarambha369/Hisab-Sathi',
-    status: 'oss',
-  },
-  {
-    id: 'misterstream-cli',
-    title: 'mrstream-cli',
-    tags: ['CLI', 'Shell', 'Media', 'OSS'],
-    description: 'Terminal-based CLI for live sports streaming. Ethical, modular, and integrated with mpv and fzf for seamless command-line video playback.',
-    stack: ['Shell', 'mpv', 'fzf', 'Bash'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Prarambha369/mrstream-cli',
-    status: 'oss',
-  },
-  {
-    id: 'mistertube',
-    title: 'MisterTube',
-    tags: ['Browser Extension', 'OSS'],
-    description: 'YouTube without the distraction noise. Strips Shorts and Home recommendations while providing focus mode. Supports Manifest V2 (Firefox) and Manifest V3 (Chrome).',
-    stack: ['JavaScript', 'CSS', 'Browser Extension APIs'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Prarambha369/MisterTube-V2',
-    status: 'oss',
-  },
-  {
-    id: 'bagh-chal',
-    title: 'Bagh-Chal',
-    tags: ['Game', 'Nepali Culture', 'OSS'],
-    description: 'Open-source digital adaptation of Bagh-Chal, the traditional strategy board game of Nepal, built to preserve and digitize local cultural games.',
-    stack: ['HTML5', 'CSS', 'JavaScript'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Prarambha369/Bagh-Chal',
-    status: 'oss',
-  },
-  {
-    id: 'tiger-bot',
-    title: 'Tiger-Bot',
-    tags: ['Discord', 'Python', 'OSS'],
-    description: 'Discord server management and community automation bot, deployed across 25+ servers through community-driven open-source development.',
-    stack: ['Python', 'Discord API'],
-    liveUrl: null,
-    githubUrl: 'https://github.com/Prarambha369/Tiger-Bot',
-    status: 'oss',
-  },
-  {
-    id: 'river-to-farm',
-    title: 'River-to-Farm',
-    tags: ['Climate Tech', 'Hardware'],
-    description: 'Low-cost river monitoring and early-alert system for farmers along the Tinau River basin in Rupandehi District. Submitted to The Earth Prize 2026.',
-    stack: ['Python', 'IoT', 'Data Science'],
-    liveUrl: null,
-    githubUrl: null,
-    status: 'in-development',
+    status: "concept",
+    reference: { label: "The Earth Prize", url: "https://www.theearthprize.org/" },
   },
 ];
+
+export const featuredProjects = projects.filter((p) => p.featured);
+
+export const projectCategories: ProjectCategory[] = Array.from(
+  new Set(projects.map((p) => p.category)),
+);
+
+// ── Merged upstream contributions (outside my own account) ────────────────
+export interface Contribution {
+  repo: string;
+  url: string;
+  summary: string;
+  prs: number;
+}
+
+export const contributions: Contribution[] = [
+  {
+    repo: "GNOME-Nepal/discord-bot",
+    url: "https://github.com/GNOME-Nepal/discord-bot/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Core commands, event system for UbuCon Asia 2025, Dockerfile and fixes.",
+    prs: 9,
+  },
+  {
+    repo: "GNOME-Nepal/website",
+    url: "https://github.com/GNOME-Nepal/website/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Core Team application form, navbar link, Discord guide and author pages.",
+    prs: 2,
+  },
+  {
+    repo: "GNOME-Nepal/contributors",
+    url: "https://github.com/GNOME-Nepal/contributors/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Automated Discord embed system for contributor announcements.",
+    prs: 2,
+  },
+  {
+    repo: "NextEra-Development/MisterTube-V2",
+    url: "https://github.com/NextEra-Development/MisterTube-V2/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Full repair for live YouTube layouts, service-worker fix and the Firefox MV2 port.",
+    prs: 4,
+  },
+  {
+    repo: "hackclub/dns",
+    url: "https://github.com/hackclub/dns/pull/1804",
+    summary: "Provisioned butwal.hackclub.com for the Hack Club Butwal chapter.",
+    prs: 1,
+  },
+];
+
+// Snapshot from GitHub (Nov 2026). contributionsLastYear is the trailing
+// 12-month total from the profile contribution graph; originalRepos counts
+// public, non-fork repositories (no licence filter); mergedPRs counts merged
+// pull requests to repositories owned by others.
+export const githubStats = {
+  snapshot: "Nov 2026",
+  contributionsLastYear: 868,
+  originalRepos: 34,
+  mergedPRs: 22,
+};

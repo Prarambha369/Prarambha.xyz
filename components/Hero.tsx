@@ -2,12 +2,12 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { Button } from "./Button";
-import { Github } from "lucide-react";
+import { Github } from "./BrandIcons";
 
 export const Hero = () => {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -18,9 +18,9 @@ export const Hero = () => {
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.34, 1.56, 0.64, 1] as const } },
   };
 
   return (
@@ -40,7 +40,7 @@ export const Hero = () => {
           </motion.p>
 
           <motion.h1 variants={item} className="font-display font-bold text-4xl sm:text-5xl md:text-7xl lg:text-7xl leading-[1.1] tracking-tight mb-4">
-            "Before, I just wanted to<br />know how it works."
+            “Before, I just wanted to<br />know how it works.”
           </motion.h1>
 
           <motion.h2 variants={item} className="font-display font-normal text-2xl sm:text-3xl md:text-5xl lg:text-5xl text-text-muted leading-[1.1] mb-8">
@@ -81,7 +81,7 @@ export const Hero = () => {
       </motion.div>
 
       {/* Grid background effect */}
-      <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none fine-grain" />
+      <div aria-hidden="true" className="absolute inset-0 z-0 pointer-events-none fine-grain" />
     </section>
   );
 };
