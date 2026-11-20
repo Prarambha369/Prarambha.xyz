@@ -61,7 +61,7 @@ export const Nav = () => {
           }`}
         />
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-          <Link href="/" className="font-display font-bold text-xl tracking-tight">
+          <Link href="/" className="font-display font-bold text-xl tracking-tight rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg">
             Prarambha<span className="text-primary">.</span>xyz
           </Link>
 
@@ -72,7 +72,7 @@ export const Nav = () => {
                 key={link.href}
                 href={link.href}
                 aria-current={pathname === link.href ? "page" : undefined}
-                className={`text-sm font-medium transition-colors ${
+                className={`text-sm font-medium transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
                   pathname === link.href ? "text-primary" : "text-text-2 hover:text-text"
                 }`}
               >
@@ -83,7 +83,7 @@ export const Nav = () => {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden text-text p-2"
+            className="md:hidden text-text p-2 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -109,7 +109,7 @@ export const Nav = () => {
                 key={link.href}
                 href={link.href}
                 aria-current={pathname === link.href ? "page" : undefined}
-                className={`text-2xl font-display font-bold ${
+                className={`text-2xl font-display font-bold rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg ${
                   pathname === link.href ? "text-primary" : "text-text"
                 }`}
                 onClick={() => setIsOpen(false)}

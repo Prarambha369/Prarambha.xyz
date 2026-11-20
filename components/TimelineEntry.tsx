@@ -23,7 +23,7 @@ export const TimelineEntry = ({ entry }: TimelineEntryProps) => {
         </span>
       </div>
 
-      <div className="flex items-center gap-2 mb-4">
+      <div className="flex flex-wrap items-center gap-2 mb-4">
         {entry.orgUrl ? (
           <a
             href={entry.orgUrl}
@@ -37,6 +37,9 @@ export const TimelineEntry = ({ entry }: TimelineEntryProps) => {
           <span className="text-primary text-sm font-medium">{entry.org}</span>
         )}
         <span className="text-text-muted text-xs">• {entry.type}</span>
+        {entry.location && (
+          <span className="text-text-muted/80 text-xs font-mono">• {entry.location}</span>
+        )}
       </div>
 
       <p className="text-text-2 text-sm leading-relaxed max-w-2xl">

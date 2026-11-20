@@ -36,7 +36,7 @@ export const projects: Project[] = [
     tags: ["Community", "Platform", "Next.js"],
     description:
       "Rupandehi's first student-led tech ecosystem, and the platform behind it: an ORCID-style public identity for young builders in Nepal, a place to run hackathons, and a record of work they can prove.",
-    stack: ["Next.js", "TypeScript", "PostgreSQL"],
+    stack: ["Next.js", "TypeScript", "Tailwind CSS", "PostgreSQL"],
     year: 2025,
     liveUrl: "https://butwalhacks.com",
     githubUrl: "https://github.com/Prarambha369/Butwal-Hacks",
@@ -50,12 +50,12 @@ export const projects: Project[] = [
     category: "Apps",
     tags: ["Android", "Kotlin", "Offline-first"],
     description:
-      "Private, SMS-powered expense tracker for Nepal. Parses transaction SMS from Nepali banks and wallets into a searchable money timeline with budgets, a cash wallet and an on-device AI assistant. A Nepal-focused adaptation of the open-source PennyWise AI tracker.",
+      "100% private, on-device expense tracker for Nepal. Parses Nepali bank SMS and PDF statements into a clean, searchable money timeline with budgets, a cash wallet and local AI assistance. A Nepal-focused adaptation of the open-source PennyWise AI tracker.",
     stack: ["Kotlin", "Android", "On-device AI"],
     year: 2026,
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/Hisab-Sathi",
-    status: "in-development",
+    status: "oss",
     featured: true,
     reference: { label: "Based on PennyWise AI", url: "https://github.com/sarim2000/pennywiseai-tracker" },
   },
@@ -225,6 +225,20 @@ export const projects: Project[] = [
     year: 2026,
     liveUrl: null,
     githubUrl: "https://github.com/NextEra-Development/Tiger-Bot",
+    status: "oss",
+  },
+
+  {
+    id: "mrstream-cli",
+    title: "mrstream-cli",
+    category: "Bots & CLI",
+    tags: ["CLI", "Shell", "Media"],
+    description:
+      "Terminal-native sports event browser and stream launcher written in POSIX shell. Modular and opt-in, with mpv and fzf for fast command-line browsing and playback.",
+    stack: ["Shell", "mpv", "fzf"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/mrstream-cli",
     status: "oss",
   },
 
