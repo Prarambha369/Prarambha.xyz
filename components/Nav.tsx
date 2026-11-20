@@ -15,62 +15,100 @@ const navLinks = [
 
 export const Nav = () => {
   const pathname = usePathname();
-  const [isOpen, setIsOpen] = useState(false);
+  // The menu remembers which route it was opened on, so navigating to another
+  // route closes it automatically without a state reset inside an effect.
+  const [openOnPath, setOpenOnPath] = useState<string | null>(null);
+  const isOpen = openOnPath === pathname;
+  const setIsOpen = (open: boolean) => setOpenOnPath(open ? pathname : null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock page scroll while the mobile menu is open; close it on Escape.
+  useEffect(() => {
+    if (!isOpen) return;
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenOnPath(null);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.body.style.overflow = prevOverflow;
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [isOpen]);
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? "glass" : "bg-transparent"}`}>
-      <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="font-display font-bold text-xl tracking-tight">
-          Prarambha<span className="text-primary">.</span>xyz
-        </Link>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50">
+        {/*
+          The blurred background lives on its own layer. Putting backdrop-filter
+          on <nav> itself would make it the containing block for the fixed
+          mobile menu below, collapsing that menu into the 80px bar on scroll.
+        */}
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 -z-10 transition-all duration-300 ${
+            isOpen ? "bg-bg border-b border-border" : scrolled ? "glass" : "bg-transparent"
+          }`}
+        />
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+          <Link href="/" className="font-display font-bold text-xl tracking-tight">
+            Prarambha<span className="text-primary">.</span>xyz
+          </Link>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-sm font-medium transition-colors ${
-                pathname === link.href ? "text-primary" : "text-text-2 hover:text-text"
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                aria-current={pathname === link.href ? "page" : undefined}
+                className={`text-sm font-medium transition-colors ${
+                  pathname === link.href ? "text-primary" : "text-text-2 hover:text-text"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile Toggle */}
+          <button
+            className="md:hidden text-text p-2"
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-text p-2"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Menu"
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Mobile Menu */}
+      {/* Mobile Menu (sibling of <nav>, so it's positioned against the viewport) */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-20 bg-bg z-40 md:hidden flex flex-col items-center justify-center gap-8"
+            className="fixed inset-x-0 bottom-0 top-20 bg-bg z-40 md:hidden flex flex-col items-center justify-center gap-8"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
+                aria-current={pathname === link.href ? "page" : undefined}
                 className={`text-2xl font-display font-bold ${
                   pathname === link.href ? "text-primary" : "text-text"
                 }`}
@@ -82,6 +120,6 @@ export const Nav = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 };

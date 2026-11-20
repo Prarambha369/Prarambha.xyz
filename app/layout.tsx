@@ -19,7 +19,11 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: 'Prarambha Bashyal — Ecosystem Founder & OSS Builder',
+  metadataBase: new URL('https://prarambha.xyz'),
+  title: {
+    default: 'Prarambha Bashyal — Ecosystem Founder & OSS Builder',
+    template: '%s — Prarambha Bashyal',
+  },
   description: 'Founder of Butwal Hacks, GNOME Nepal maintainer, and open-source builder from Butwal, Nepal. 15 years old. Building the tech infrastructure that didn\'t exist in his city.',
   openGraph: {
     title: 'Prarambha Bashyal',

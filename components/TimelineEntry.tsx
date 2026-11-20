@@ -7,7 +7,7 @@ interface TimelineEntryProps {
 
 export const TimelineEntry = ({ entry }: TimelineEntryProps) => {
   return (
-    <div className="relative pl-8 pb-12 last:pb-0">
+    <div className="group relative pl-8 pb-12 last:pb-0">
       {/* Connector Line */}
       <div className="absolute left-0 top-2 bottom-0 w-px bg-border group-last:bg-transparent" />
 
