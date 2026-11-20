@@ -3,15 +3,15 @@
 import React from "react";
 import { TimelineEntry } from "@/components/TimelineEntry";
 import { experience } from "@/data/experience";
-import { Button } from "@/components/Button";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin } from "@/components/BrandIcons";
 
 export default function About() {
   return (
     <div className="pt-32 pb-24 px-6 max-w-4xl mx-auto">
       <div className="mb-16">
         <p className="font-mono text-[10px] tracking-widest uppercase text-primary mb-4">
-          // THE STORY
+          {"// THE STORY"}
         </p>
         <h1 className="font-display font-bold text-4xl md:text-6xl mb-8 leading-tight">
           Butwal Hacks started as one approved email.
@@ -19,10 +19,10 @@ export default function About() {
         <div className="flex flex-col md:flex-row gap-12 items-start">
           <div className="flex-grow space-y-6 text-text-2 leading-relaxed">
             <p>
-              It became Rupandehi's first student-led tech ecosystem — a game jam, a hackathon, partnerships with Google and MLH, organized entirely by teenagers in a city most tech companies have never heard of.
+              It became Rupandehi’s first student-led tech ecosystem — a game jam, a hackathon, partnerships with Google and MLH, organized entirely by teenagers in a city most tech companies have never heard of.
             </p>
             <p>
-              Outside of that, I maintain GNOME Nepal as a top-5 contributor and volunteered at UbuCon Asia 2025. I work entirely from a smartphone, proving that access to high-end hardware isn't the bottleneck for the next generation of builders.
+              Outside of that, I maintain GNOME Nepal as a top-5 contributor and volunteered at UbuCon Asia 2025. I work entirely from a smartphone, proving that access to high-end hardware isn’t the bottleneck for the next generation of builders.
             </p>
             <p>
               I believe open-source infrastructure is how you build equitable access to technology — not just conferences about it.
@@ -49,7 +49,7 @@ export default function About() {
 
       <div className="mb-24">
          <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-8">
-          // CORE VALUES
+          {"// CORE VALUES"}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
            {[
@@ -68,7 +68,7 @@ export default function About() {
 
       <div>
         <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-12">
-          // FULL TIMELINE
+          {"// FULL TIMELINE"}
         </p>
         <div className="flex flex-col">
           {experience.map((exp, index) => (

@@ -3,7 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Tag } from "./Tag";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { Github } from "./BrandIcons";
 import { Project } from "@/data/projects";
 
 interface ProjectCardProps {
@@ -16,19 +17,26 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       whileHover={{ y: -4, borderColor: "rgba(255, 102, 17, 0.4)" }}
       className="group p-8 border border-border bg-surface-2 rounded-lg flex flex-col h-full transition-all duration-300"
     >
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.tags.map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
+      <div className="flex items-start justify-between gap-4 mb-6">
+        <div className="flex flex-wrap gap-2">
+          {project.tags.map((tag) => (
+            <Tag key={tag}>{tag}</Tag>
+          ))}
+        </div>
+        <span className="font-mono text-[11px] text-text-2 shrink-0">{project.year}</span>
       </div>
 
       <h3 className="font-display font-bold text-2xl mb-4 group-hover:text-primary transition-colors">
         {project.title}
       </h3>
 
-      <p className="text-text-2 text-sm leading-relaxed mb-8 flex-grow">
+      <p className="text-text-2 text-sm leading-relaxed mb-6 flex-grow">
         {project.description}
       </p>
+
+      {project.highlight && (
+        <p className="font-mono text-xs text-primary mb-6">↳ {project.highlight}</p>
+      )}
 
       <div className="flex items-center gap-4 pt-6 border-t border-border mt-auto">
         {project.githubUrl && (
@@ -39,7 +47,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             className="text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-mono"
           >
             <Github size={14} />
-            GitHub
+            Source
           </a>
         )}
         {project.liveUrl && (
@@ -53,10 +61,25 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             Live
           </a>
         )}
-        {!project.githubUrl && !project.liveUrl && (
-          <span className="text-text-muted/50 text-[10px] font-mono italic">
-            In Development
-          </span>
+        {project.reference && (
+          <a
+            href={project.reference.url}
+            target="_blank"
+            rel="noopener"
+            className="text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-mono"
+          >
+            <ExternalLink size={14} />
+            {project.reference.label}
+          </a>
+        )}
+        {project.status === "concept" && (
+          <span className="ml-auto text-cyan text-[11px] font-mono">Pitch / concept</span>
+        )}
+        {project.status === "in-development" && (
+          <span className="ml-auto text-amber text-[11px] font-mono">In development</span>
+        )}
+        {project.status === "archived" && (
+          <span className="ml-auto text-text-2 text-[11px] font-mono">Archived</span>
         )}
       </div>
     </motion.div>

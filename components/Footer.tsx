@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { Github, Linkedin } from "./BrandIcons";
 
 export const Footer = () => {
   return (
@@ -16,14 +17,14 @@ export const Footer = () => {
         </div>
 
         <div className="flex gap-6">
-          <a href="https://github.com/Prarambha369" target="_blank" rel="noopener noreferrer" className="text-text-2 hover:text-primary transition-colors">
-            <Github size={20} />
+          <a href="https://github.com/Prarambha369" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-text-2 hover:text-primary transition-colors">
+            <Github size={20} aria-hidden="true" />
           </a>
-          <a href="https://linkedin.com/in/misterbashyal" target="_blank" rel="noopener noreferrer" className="text-text-2 hover:text-primary transition-colors">
-            <Linkedin size={20} />
+          <a href="https://linkedin.com/in/misterbashyal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-text-2 hover:text-primary transition-colors">
+            <Linkedin size={20} aria-hidden="true" />
           </a>
-          <a href="mailto:prarambha@butwalhacks.com" className="text-text-2 hover:text-primary transition-colors">
-            <Mail size={20} />
+          <a href="mailto:prarambha@butwalhacks.com" aria-label="Email" className="text-text-2 hover:text-primary transition-colors">
+            <Mail size={20} aria-hidden="true" />
           </a>
         </div>
       </div>
