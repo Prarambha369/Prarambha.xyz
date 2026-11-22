@@ -8,6 +8,8 @@ import { TimelineEntry } from "@/components/TimelineEntry";
 import { Button } from "@/components/Button";
 import { featuredProjects } from "@/data/projects";
 import { experience } from "@/data/experience";
+import { featuredEvents } from "@/data/events";
+import { EventCard } from "@/components/EventCard";
 
 export default function Home() {
   return (
@@ -29,6 +31,28 @@ export default function Home() {
           <Button variant="secondary" href="/work">
             View All Projects →
           </Button>
+        </div>
+      </section>
+
+      {/* Events showcase */}
+      <section className="py-24 px-6 border-t border-border">
+        <div className="max-w-6xl mx-auto w-full">
+          <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-4">
+            {"// EVENTS & COMMUNITY"}
+          </p>
+          <h2 className="font-display font-bold text-3xl md:text-4xl mb-12 max-w-2xl leading-tight">
+            Hackathons and game jams, built from Butwal.
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {featuredEvents.map((event) => (
+              <EventCard key={event.id} event={event} />
+            ))}
+          </div>
+          <div className="mt-16 flex justify-center">
+            <Button variant="secondary" href="/events">
+              All events →
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -71,12 +95,18 @@ export default function Home() {
 
       {/* Certifications / Bottom CTA */}
       <section className="py-24 px-6 text-center bg-primary/5">
-        <h2 className="font-display font-bold text-3xl md:text-4xl mb-8">
+        <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
           Let’s build something different.
         </h2>
-        <div className="flex justify-center gap-4">
+        <p className="text-text-2 max-w-xl mx-auto mb-8 leading-relaxed">
+          Open to remote internships, open-source collaboration, event sponsorships and ecosystem partnerships.
+        </p>
+        <div className="flex flex-wrap justify-center gap-4">
           <Button href="/contact">
             Get in touch
+          </Button>
+          <Button variant="secondary" href="/events">
+            Sponsor an event
           </Button>
           <Button variant="secondary" href="/oss">
             View OSS
