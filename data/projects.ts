@@ -1,5 +1,5 @@
 // Generated from a scan of github.com/Prarambha369 and github.com/NextEra-Development
-// (Nov 2026). Practice repos, config repos and unmodified forks are intentionally left out.
+// (rescanned 23 Nov 2026). Practice repos, config repos and unmodified forks are intentionally left out.
 
 export type ProjectCategory =
   | "Community"
@@ -185,6 +185,59 @@ export const projects: Project[] = [
     status: "oss",
   },
 
+  {
+    id: "sports-hub",
+    title: "Kick Sports",
+    category: "Apps",
+    tags: ["Sports", "Web", "GitHub Actions"],
+    description:
+      "Sports news and fixtures hub covering football, cricket, NBA, F1 and more: live scores, today's TV listings and official league highlights, auto-refreshed every 3 hours by a GitHub Action.",
+    stack: ["JavaScript", "HTML", "GitHub Actions"],
+    year: 2026,
+    liveUrl: "https://prarambha369.github.io/sports-hub/",
+    githubUrl: "https://github.com/Prarambha369/sports-hub",
+    status: "live",
+  },
+  {
+    id: "nekyll",
+    title: "Nekyll",
+    category: "Apps",
+    tags: ["Jekyll", "Theme", "Nepal"],
+    description:
+      "Minimal Jekyll theme in the colors of the Nepali flag: one clean layout, readable typography, no JavaScript and a single stylesheet of CSS variables that is easy to recolor.",
+    stack: ["Jekyll", "Liquid", "CSS"],
+    year: 2026,
+    liveUrl: null,
+    githubUrl: "https://github.com/Prarambha369/Nekyll",
+    status: "oss",
+  },
+  {
+    id: "muisckm",
+    title: "Muisckm",
+    category: "Apps",
+    tags: ["Music", "Hack Club", "YSWS"],
+    description:
+      "Generative music in the browser, built for a Hack Club You Ship We Ship program. Tone.js handles synthesis and sequencing, and the track can be exported as a WAV file.",
+    stack: ["JavaScript", "Tone.js"],
+    year: 2025,
+    liveUrl: "https://prarambha369.github.io/muisckm/",
+    githubUrl: "https://github.com/Prarambha369/muisckm",
+    status: "live",
+  },
+  {
+    id: "pebo-codes",
+    title: "Pebo.Codes",
+    category: "Apps",
+    tags: ["Client work", "Portfolio"],
+    description:
+      "Portfolio site built for a client under NextEra Development, hand-written in HTML and CSS.",
+    stack: ["HTML", "CSS"],
+    year: 2024,
+    liveUrl: null, // pebo.codes no longer resolves
+    githubUrl: "https://github.com/NextEra-Development/pebo.codes",
+    status: "archived",
+  },
+
   // ── Extensions ──────────────────────────────────────────────────────────
   {
     id: "battery-safety",
@@ -298,6 +351,8 @@ export interface Contribution {
   url: string;
   summary: string;
   prs: number;
+  /** Replaces the "n PRs" label, e.g. for work that landed as direct commits or a PR still in review. */
+  badge?: string;
 }
 
 export const contributions: Contribution[] = [
@@ -326,10 +381,42 @@ export const contributions: Contribution[] = [
     prs: 4,
   },
   {
+    repo: "NextEra-Development/Tiger-Bot",
+    url: "https://github.com/NextEra-Development/Tiger-Bot/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Common moderation and utility commands, untracked runtime giveaway data and README fixes.",
+    prs: 2,
+  },
+  {
+    repo: "NextEra-Development/MisterTube-V3",
+    url: "https://github.com/NextEra-Development/MisterTube-V3/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Scan-and-fix cleanup of the Manifest V3 build, verified loadable in Chrome.",
+    prs: 1,
+  },
+  {
+    repo: "hackclub/daydream",
+    url: "https://github.com/hackclub/daydream/commits?author=Prarambha369",
+    summary: "Butwal city page for Daydream, Hack Club's global game jam: schedule, RSVP and sponsor redirect.",
+    prs: 0,
+    badge: "3 commits",
+  },
+  {
     repo: "hackclub/dns",
     url: "https://github.com/hackclub/dns/pull/1804",
     summary: "Provisioned butwal.hackclub.com for the Hack Club Butwal chapter.",
     prs: 1,
+  },
+  {
+    repo: "hackclub/dinosaurs",
+    url: "https://github.com/hackclub/dinosaurs/pulls?q=is%3Apr+author%3APrarambha369+is%3Amerged",
+    summary: "Added a dinosaur to Hack Club's community dino gallery.",
+    prs: 1,
+  },
+  {
+    repo: "Aryan20/Logomenu",
+    url: "https://github.com/Aryan20/Logomenu/pull/120",
+    summary: "Optional text label for the GNOME panel menu button.",
+    prs: 1,
+    badge: "PR in review",
   },
 ];
 
@@ -339,7 +426,7 @@ export const contributions: Contribution[] = [
 // pull requests to repositories owned by others.
 export const githubStats = {
   snapshot: "Nov 2026",
-  contributionsLastYear: 868,
+  contributionsLastYear: 886,
   originalRepos: 34,
-  mergedPRs: 22,
+  mergedPRs: 23,
 };

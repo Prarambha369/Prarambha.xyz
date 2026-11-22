@@ -47,7 +47,7 @@ export default function OSS() {
         </div>
 
         <div className="space-y-6">
-          <h2 className="font-display font-bold text-2xl">Merged upstream work</h2>
+          <h2 className="font-display font-bold text-2xl">Upstream work</h2>
           <ul className="divide-y divide-border border-y border-border">
             {contributions.map((c) => (
               <li key={c.repo}>
@@ -62,7 +62,7 @@ export default function OSS() {
                   </span>
                   <span className="text-sm text-text-2 flex-grow">{c.summary}</span>
                   <span className="font-mono text-xs text-text-2 shrink-0">
-                    {c.prs} PR{c.prs > 1 ? "s" : ""} ↗
+                    {c.badge ?? `${c.prs} PR${c.prs === 1 ? "" : "s"}`} ↗
                   </span>
                 </a>
               </li>
