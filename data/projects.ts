@@ -42,7 +42,6 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Prarambha369/Butwal-Hacks",
     status: "live",
     featured: true,
-    highlight: "90+ participants · MLH + Google Gemini",
   },
   {
     id: "hisab-sathi",
@@ -102,6 +101,7 @@ export const projects: Project[] = [
     liveUrl: "https://hackday.butwalhacks.com",
     githubUrl: "https://github.com/Prarambha369/hackday",
     status: "live",
+    highlight: "90+ participants · MLH + Google Gemini",
   },
   {
     id: "cyberutsav-lumbini",
