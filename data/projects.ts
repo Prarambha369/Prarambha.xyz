@@ -266,12 +266,13 @@ export const projects: Project[] = [
 
   {
     id: "sports-hub",
+    banner: "/projects/sports-hub-banner.webp",
     title: "Kick Sports",
     category: "Apps",
-    tags: ["Sports", "Web", "GitHub Actions"],
+    tags: ["Sports", "News", "Open data"],
     description:
-      "Sports news and fixtures hub covering football, cricket, NBA, F1 and more: live scores, today's TV listings and official league highlights, auto-refreshed every 3 hours by a GitHub Action.",
-    stack: ["JavaScript", "HTML", "GitHub Actions"],
+      "Sports news and scores hub built only on licensed, public data: BBC Sport and ESPN headlines refreshed every 3 hours by a GitHub Action, latest results and next fixtures from TheSportsDB, and highlights from the leagues' own YouTube channels.",
+    stack: ["JavaScript", "Python", "GitHub Actions", "TheSportsDB API"],
     year: 2026,
     liveUrl: "https://prarambha369.github.io/sports-hub/",
     githubUrl: "https://github.com/Prarambha369/sports-hub",
