@@ -11,14 +11,14 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    role: 'Organizing Committee Member',
+    role: 'Core Organizer',
     org: 'Hack4Safety 2083 (Lumbini Province Police)',
     orgUrl: null,
     type: 'Government Innovation',
     start: '2026',
     end: '2026',
     location: 'Butwal Training Center, Nepal',
-    description: "Organizing committee for Nepal's first-ever government hackathon presented by Lumbini Province Police. Co-led 36-hour sprint at Butwal Training Center bringing developers nationwide together for cybercrime, emergency response, and public safety solutions.",
+    description: "Core organizer of Nepal's first-ever government hackathon presented by Lumbini Province Police. Co-led the 36-hour sprint at Butwal Training Center, bringing around 80 developers from across Nepal together for cybercrime, emergency response, and public safety solutions.",
   },
   {
     role: 'Founder & Community Lead',

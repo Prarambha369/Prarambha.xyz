@@ -27,7 +27,7 @@ export default function About() {
               That question led me to establish <strong className="text-text">Butwal Hacks</strong> — Rupandehi’s first student-led tech ecosystem. With no institutional backing, we produced Daydream Butwal (a 24-hour game jam for teens) and HackDay Butwal (partnered with Major League Hacking & Google Gemini).
             </p>
             <p>
-              Beyond ecosystem building, I maintain <strong className="text-text">GNOME Nepal</strong> as a top contributor, served on the organizing committee of <strong className="text-text">Hack4Safety 2083</strong> (Lumbini Province Police Government Hackathon), and build privacy-first tools through NextEra Development.
+              Beyond ecosystem building, I maintain <strong className="text-text">GNOME Nepal</strong> as a top contributor, was a core organizer of <strong className="text-text">Hack4Safety 2083</strong> (Lumbini Province Police Government Hackathon), and build privacy-first tools through NextEra Development.
             </p>
           </div>
           <div className="w-full md:w-72 shrink-0 flex flex-col gap-6 p-6 border border-border bg-surface-2 rounded-xl">

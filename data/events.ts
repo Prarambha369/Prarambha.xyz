@@ -73,11 +73,11 @@ export const events: EventItem[] = [
     title: "Hack4Safety 2083",
     dateLabel: "2026",
     city: "Butwal, Nepal",
-    role: "Organizing committee",
+    role: "Core organizer",
     organizer: "Lumbini Province Police",
     description:
       "Nepal's first government hackathon, presented by Lumbini Province Police: a 36-hour sprint at Butwal Training Center on cybercrime, emergency response and public safety.",
-    highlights: ["36-hour sprint", "Government hackathon", "Public safety"],
+    highlights: ["~80 participants", "36-hour sprint", "Government hackathon", "Public safety"],
     image: "/events/hack4safety-2083.svg",
     imageAlt: "Placeholder graphic for Hack4Safety 2083. Event photos coming soon.",
     placeholder: true,
