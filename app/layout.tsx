@@ -3,6 +3,8 @@ import { Zilla_Slab, DM_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { JsonLd } from "@/components/JsonLd";
+import { ORGS, PERSON, SITE_NAME, SITE_URL, orgId, personId, websiteId } from "@/lib/seo";
 
 const zilla = Zilla_Slab({
   subsets: ["latin"],
@@ -19,7 +21,10 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://prarambha.xyz'),
+  metadataBase: new URL(SITE_URL),
+  alternates: { canonical: '/' },
+  authors: [{ name: PERSON.name, url: SITE_URL }],
+  creator: PERSON.name,
   title: {
     default: 'Prarambha Bashyal — Ecosystem Founder & OSS Builder',
     template: '%s — Prarambha Bashyal',
@@ -41,8 +46,47 @@ export const metadata: Metadata = {
   keywords: [
     'Prarambha Bashyal', 'Butwal Hacks', 'GNOME Nepal',
     'Nepal developer', 'open source Nepal', 'student developer Nepal',
-    'NextEra Development', 'MisterBashyal'
-  ]
+    'NextEra Development', 'MisterBashyal', 'HackDay Butwal', 'Daydream Butwal',
+    'Hack4Safety 2083', 'Hisab Sathi', 'MisterTube', 'hackathon Nepal'
+  ],
+  robots: { index: true, follow: true, 'max-image-preview': 'large' },
+};
+
+const siteSchema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': personId,
+      name: PERSON.name,
+      alternateName: PERSON.alternateName,
+      url: SITE_URL,
+      image: `${SITE_URL}${PERSON.image}`,
+      jobTitle: PERSON.jobTitle,
+      description: PERSON.description,
+      email: `mailto:${PERSON.email}`,
+      address: { '@type': 'PostalAddress', addressLocality: PERSON.city, addressCountry: 'NP' },
+      knowsAbout: PERSON.knowsAbout,
+      sameAs: PERSON.sameAs,
+      worksFor: ORGS.map((o) => ({ '@id': orgId(o.id) })),
+    },
+    ...ORGS.map((o) => ({
+      '@type': 'Organization',
+      '@id': orgId(o.id),
+      name: o.name,
+      url: o.url,
+      description: o.description,
+      founder: { '@id': personId },
+    })),
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      url: SITE_URL,
+      name: SITE_NAME,
+      inLanguage: 'en',
+      publisher: { '@id': personId },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -52,6 +96,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <JsonLd data={siteSchema} />
+      </head>
       <body className={`${zilla.variable} ${dmMono.variable} font-sans bg-bg text-text min-h-screen flex flex-col`}>
         <a
           href="#main-content"

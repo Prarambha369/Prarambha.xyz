@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { TimelineEntry } from "@/components/TimelineEntry";
 import { experience } from "@/data/experience";
+import { faq } from "@/data/faq";
 import { Mail, MapPin, Code, Cpu, Award } from "lucide-react";
 import { Github, Linkedin } from "@/components/BrandIcons";
 
@@ -139,6 +140,24 @@ export default function About() {
         <div className="flex flex-col">
           {experience.map((exp, index) => (
             <TimelineEntry key={index} entry={exp} />
+          ))}
+        </div>
+      </div>
+
+      {/* FAQ: same content as the FAQPage structured data in layout.tsx */}
+      <div className="mt-24">
+        <p className="font-mono text-[10px] tracking-widest uppercase text-text-muted mb-8">
+          {"// FREQUENTLY ASKED"}
+        </p>
+        <div className="divide-y divide-border border-y border-border">
+          {faq.map((f) => (
+            <details key={f.q} className="group py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display font-bold text-lg rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg">
+                <h2 className="text-lg">{f.q}</h2>
+                <span aria-hidden="true" className="font-mono text-primary transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <p className="mt-3 text-text-2 leading-relaxed">{f.a}</p>
+            </details>
           ))}
         </div>
       </div>
