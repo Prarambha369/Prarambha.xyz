@@ -22,6 +22,8 @@ export interface Project {
   status: "live" | "oss" | "in-development" | "concept" | "archived";
   /** Extra outbound link, e.g. the competition a pitch was submitted to or an upstream project. */
   reference?: { label: string; url: string };
+  /** App download, e.g. a GitHub release page with APKs. */
+  download?: { label: string; url: string };
   featured?: boolean;
   /** Short proof point shown on cards, e.g. "360 downloads". */
   highlight?: string;
@@ -57,6 +59,8 @@ export const projects: Project[] = [
     status: "oss",
     featured: true,
     reference: { label: "Based on PennyWise AI", url: "https://github.com/sarim2000/pennywiseai-tracker" },
+    // Stable tag page: APK file names include the commit hash and change every build.
+    download: { label: "Download APK", url: "https://github.com/Prarambha369/Hisab-Sathi/releases/tag/prebeta-latest" },
   },
   {
     id: "mistertube",

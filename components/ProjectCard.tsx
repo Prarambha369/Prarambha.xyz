@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Tag } from "./Tag";
-import { ExternalLink } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 import { Github } from "./BrandIcons";
 import { Project } from "@/data/projects";
 
@@ -78,6 +78,18 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
       )}
 
       <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-6 border-t border-border mt-auto">
+        {project.download && (
+          <a
+            href={project.download.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.download.label} for ${project.title} (opens in a new tab)`}
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-bg transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+          >
+            <Download size={14} aria-hidden="true" />
+            {project.download.label}
+          </a>
+        )}
         {project.githubUrl && (
           <a
             href={project.githubUrl}
@@ -114,7 +126,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             {project.reference.label} ↗
           </a>
         )}
-        {!project.githubUrl && !project.liveUrl && !project.reference && (
+        {!project.githubUrl && !project.liveUrl && !project.reference && !project.download && (
           <span className="text-text-2 text-[11px] font-mono italic">No public links yet</span>
         )}
       </div>
