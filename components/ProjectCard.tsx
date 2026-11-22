@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Tag } from "./Tag";
-import { Download, ExternalLink } from "lucide-react";
+import { BookOpen, Download, ExternalLink, FileArchive } from "lucide-react";
 import { Github } from "./BrandIcons";
 import { Project } from "@/data/projects";
 
@@ -26,6 +26,11 @@ const statusStyles: Record<Project["status"], string> = {
   concept: "border-cyan/40 text-cyan",
   archived: "border-border-2 text-text-2",
 };
+
+const buttonClass =
+  "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-bg transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
+
+const zipUrl = (repoUrl: string, branch = "main") => `${repoUrl}/archive/refs/heads/${branch}.zip`;
 
 const linkClass =
   "text-text-muted hover:text-primary transition-colors flex items-center gap-1.5 text-xs font-mono rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg";
@@ -64,6 +69,55 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <p className="font-mono text-xs text-primary mb-6">↳ {project.highlight}</p>
       )}
 
+      {project.requirements && (
+        <p className="font-mono text-[11px] text-text-2 mb-6">
+          <span className="text-text-muted">Needs:</span> {project.requirements}
+        </p>
+      )}
+
+      {project.variants && (
+        <div className="space-y-3 mb-6">
+          {project.variants.map((v) => (
+            <div key={v.name} className="p-4 rounded-lg border border-border bg-surface/60">
+              <p className="font-mono text-xs text-text mb-1.5">{v.name}</p>
+              <p className="text-xs text-text-2 leading-relaxed mb-3">{v.why}</p>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <a
+                  href={v.download.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${v.download.label}: ${project.title} ${v.name} (opens in a new tab)`}
+                  className={buttonClass}
+                >
+                  <Download size={14} aria-hidden="true" />
+                  {v.download.label}
+                </a>
+                <a
+                  href={v.setupUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Setup guide for ${project.title} ${v.name} (opens in a new tab)`}
+                  className={linkClass}
+                >
+                  <BookOpen size={14} aria-hidden="true" />
+                  Setup ↗
+                </a>
+                <a
+                  href={v.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Source for ${project.title} ${v.name} (opens in a new tab)`}
+                  className={linkClass}
+                >
+                  <Github size={14} aria-hidden="true" />
+                  Source ↗
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
       {project.stack.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-6 pt-4 border-t border-border/50">
           {project.stack.map((tech) => (
@@ -84,13 +138,25 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${project.download.label} for ${project.title} (opens in a new tab)`}
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-bg transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            className={buttonClass}
           >
             <Download size={14} aria-hidden="true" />
             {project.download.label}
           </a>
         )}
-        {project.githubUrl && (
+        {project.setupUrl && (
+          <a
+            href={project.setupUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Setup guide for ${project.title} (opens in a new tab)`}
+            className={linkClass}
+          >
+            <BookOpen size={14} aria-hidden="true" />
+            Setup ↗
+          </a>
+        )}
+        {project.githubUrl && !project.variants && (
           <a
             href={project.githubUrl}
             target="_blank"
@@ -100,6 +166,16 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
           >
             <Github size={14} aria-hidden="true" />
             Source ↗
+          </a>
+        )}
+        {project.githubUrl && !project.download && !project.variants && (
+          <a
+            href={zipUrl(project.githubUrl, project.defaultBranch)}
+            aria-label={`Download source code of ${project.title} as a .zip`}
+            className={linkClass}
+          >
+            <FileArchive size={14} aria-hidden="true" />
+            Source .zip
           </a>
         )}
         {project.liveUrl && (
@@ -126,7 +202,7 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
             {project.reference.label} ↗
           </a>
         )}
-        {!project.githubUrl && !project.liveUrl && !project.reference && !project.download && (
+        {!project.githubUrl && !project.liveUrl && !project.reference && !project.download && !project.setupUrl && !project.variants && (
           <span className="text-text-2 text-[11px] font-mono italic">No public links yet</span>
         )}
       </div>

@@ -9,6 +9,21 @@ export type ProjectCategory =
   | "Bots & CLI"
   | "Hardware";
 
+export interface ProjectLink {
+  label: string;
+  url: string;
+}
+
+export interface ProjectVariant {
+  /** e.g. "Chrome, Edge, Brave · Manifest V3" */
+  name: string;
+  /** Why this build exists and who should pick it. */
+  why: string;
+  download: ProjectLink;
+  setupUrl: string;
+  sourceUrl: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -22,8 +37,16 @@ export interface Project {
   status: "live" | "oss" | "in-development" | "concept" | "archived";
   /** Extra outbound link, e.g. the competition a pitch was submitted to or an upstream project. */
   reference?: { label: string; url: string };
-  /** App download, e.g. a GitHub release page with APKs. */
-  download?: { label: string; url: string };
+  /** A real build to install (release page, store listing). Shown as the primary button. */
+  download?: ProjectLink;
+  /** Where the install / run-locally steps live, usually a README section. */
+  setupUrl?: string;
+  /** Repo default branch, used for the "Source .zip" link. Defaults to "main". */
+  defaultBranch?: string;
+  /** One-line runtime requirements, e.g. "Android 8.0+". */
+  requirements?: string;
+  /** Separate builds of the same project, e.g. per browser. Replaces the single download/setup links. */
+  variants?: ProjectVariant[];
   featured?: boolean;
   /** Short proof point shown on cards, e.g. "360 downloads". */
   highlight?: string;
@@ -43,6 +66,7 @@ export const projects: Project[] = [
     liveUrl: "https://butwalhacks.com",
     githubUrl: "https://github.com/Prarambha369/Butwal-Hacks",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/Butwal-Hacks#quick-start",
     featured: true,
   },
   {
@@ -57,6 +81,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/Hisab-Sathi",
     status: "oss",
+    setupUrl: "https://github.com/Prarambha369/Hisab-Sathi#quick-start",
+    requirements: "Android 8.0+ · install the standard APK",
     featured: true,
     reference: { label: "Based on PennyWise AI", url: "https://github.com/sarim2000/pennywiseai-tracker" },
     // Stable tag page: APK file names include the commit hash and change every build.
@@ -74,6 +100,22 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/NextEra-Development/MisterTube-V3",
     status: "oss",
+    variants: [
+      {
+        name: "Chrome, Edge, Brave · V3",
+        why: "Chromium browsers only accept Manifest V3 extensions now, so V3 is the build for them. Load it unpacked in Developer mode.",
+        download: { label: "Download for Chrome", url: "https://github.com/NextEra-Development/MisterTube-V3/archive/refs/heads/master.zip" },
+        setupUrl: "https://github.com/NextEra-Development/MisterTube-V3#-installation",
+        sourceUrl: "https://github.com/NextEra-Development/MisterTube-V3",
+      },
+      {
+        name: "Firefox · V2",
+        why: "Firefox still runs Manifest V2, so V2 is the same extension packaged for it. It is not on addons.mozilla.org yet, so it loads as a temporary add-on that Firefox removes on restart.",
+        download: { label: "Download for Firefox", url: "https://github.com/NextEra-Development/MisterTube-V2/archive/refs/heads/main.zip" },
+        setupUrl: "https://github.com/NextEra-Development/MisterTube-V2#-installation",
+        sourceUrl: "https://github.com/NextEra-Development/MisterTube-V2",
+      },
+    ],
     featured: true,
   },
   {
@@ -88,6 +130,9 @@ export const projects: Project[] = [
     liveUrl: "https://modrinth.com/mod/chikem-mod",
     githubUrl: "https://github.com/Prarambha369/chikemMod",
     status: "live",
+    download: { label: "Download .jar", url: "https://github.com/Prarambha369/chikemMod/releases/latest" },
+    setupUrl: "https://github.com/Prarambha369/chikemMod#for-players",
+    requirements: "Minecraft 26.3 · Fabric Loader 0.20.1+ · Fabric API · Java 25",
     featured: true,
     highlight: "360+ downloads on Modrinth",
   },
@@ -105,6 +150,7 @@ export const projects: Project[] = [
     liveUrl: "https://hackday.butwalhacks.com",
     githubUrl: "https://github.com/Prarambha369/hackday",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/hackday#getting-started",
     highlight: "90+ participants · MLH + Google Gemini",
   },
   {
@@ -119,6 +165,7 @@ export const projects: Project[] = [
     liveUrl: "https://cyber-utsav-lumbini-butwal.vercel.app",
     githubUrl: "https://github.com/Prarambha369/CyberUtsavLumbini",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/CyberUtsavLumbini#-quick-start",
   },
   {
     id: "hack-club-butwal",
@@ -132,6 +179,7 @@ export const projects: Project[] = [
     liveUrl: null, // site is offline (Vercel 404; butwal.hackclub.com has no DNS)
     githubUrl: "https://github.com/Prarambha369/hcbutwal",
     status: "archived",
+    setupUrl: "https://github.com/Prarambha369/hcbutwal#readme",
   },
 
   // ── Apps & tools ────────────────────────────────────────────────────────
@@ -147,6 +195,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/Sahuji-Cashier",
     status: "oss",
+    setupUrl: "https://github.com/Prarambha369/Sahuji-Cashier#1-installation",
+    requirements: "A C++ compiler (g++ or clang)",
     highlight: "15 stars · most-starred repo",
   },
   {
@@ -161,6 +211,7 @@ export const projects: Project[] = [
     liveUrl: "https://color-wheel-prarambha.vercel.app/",
     githubUrl: "https://github.com/Prarambha369/ColorWheel",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/ColorWheel#getting-started",
   },
   {
     id: "mrfonts",
@@ -174,6 +225,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/MrFonts/",
     githubUrl: "https://github.com/Prarambha369/MrFonts",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/MrFonts#installation",
   },
   {
     id: "ai-blog",
@@ -187,6 +239,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/aiblog",
     status: "oss",
+    setupUrl: "https://github.com/Prarambha369/aiblog#installation",
+    requirements: "Python 3 · OpenAI API key",
   },
 
   {
@@ -201,6 +255,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/sports-hub/",
     githubUrl: "https://github.com/Prarambha369/sports-hub",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/sports-hub#installation",
   },
   {
     id: "nekyll",
@@ -214,6 +269,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/Nekyll",
     status: "oss",
+    setupUrl: "https://github.com/Prarambha369/Nekyll#getting-started",
+    requirements: "Ruby 3.0+ and Bundler, or Docker",
   },
   {
     id: "muisckm",
@@ -227,6 +284,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/muisckm/",
     githubUrl: "https://github.com/Prarambha369/muisckm",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/muisckm#readme",
   },
   {
     id: "pebo-codes",
@@ -240,6 +298,7 @@ export const projects: Project[] = [
     liveUrl: null, // pebo.codes no longer resolves
     githubUrl: "https://github.com/NextEra-Development/pebo.codes",
     status: "archived",
+    setupUrl: "https://github.com/NextEra-Development/pebo.codes#installation",
   },
 
   // ── Extensions ──────────────────────────────────────────────────────────
@@ -255,6 +314,9 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/battery-safety",
     status: "oss",
+    download: { label: "Download extension", url: "https://github.com/Prarambha369/battery-safety/releases/latest" },
+    setupUrl: "https://github.com/Prarambha369/battery-safety#installation",
+    requirements: "GNOME Shell 45–51 · TLP 1.4+ · a laptop with charge thresholds",
   },
   {
     id: "pirate-translator",
@@ -268,6 +330,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/pirateDictionary/",
     githubUrl: "https://github.com/Prarambha369/pirateDictionary",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/pirateDictionary#step-by-step-usage-guide",
   },
 
   // ── Bots ────────────────────────────────────────────────────────────────
@@ -283,6 +346,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/NextEra-Development/Tiger-Bot",
     status: "oss",
+    setupUrl: "https://github.com/NextEra-Development/Tiger-Bot#installation",
+    requirements: "Node.js · MongoDB · a Discord bot token",
   },
 
   {
@@ -297,6 +362,8 @@ export const projects: Project[] = [
     liveUrl: null,
     githubUrl: "https://github.com/Prarambha369/mrstream-cli",
     status: "oss",
+    setupUrl: "https://github.com/Prarambha369/mrstream-cli#quick-install-script",
+    requirements: "curl, fzf and mpv · Linux, macOS or Termux",
   },
 
   // ── Games ───────────────────────────────────────────────────────────────
@@ -312,6 +379,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/Bagh-Chal/",
     githubUrl: "https://github.com/Prarambha369/Bagh-Chal",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/Bagh-Chal#running-the-game",
   },
   {
     id: "shiny-octo",
@@ -324,6 +392,7 @@ export const projects: Project[] = [
     liveUrl: "https://prarambha369.github.io/shiny-octo/",
     githubUrl: "https://github.com/Prarambha369/shiny-octo",
     status: "live",
+    setupUrl: "https://github.com/Prarambha369/shiny-octo#readme",
   },
 
   // ── Hardware ────────────────────────────────────────────────────────────
