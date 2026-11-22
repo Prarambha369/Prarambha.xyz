@@ -167,7 +167,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Prarambha369/hackday",
     status: "live",
     setupUrl: "https://github.com/Prarambha369/hackday#getting-started",
-    highlight: "90+ participants · MLH + Google Gemini",
+    highlight: "50 university students · MLH + Google Gemini",
   },
   {
     id: "cyberutsav-lumbini",

@@ -42,7 +42,7 @@ export const events: EventItem[] = [
     organizer: "Butwal Hacks",
     description:
       "One-day, beginner-friendly student hackathon run with Major League Hacking and Google Gemini. Theme: Creativity with caffeine.",
-    highlights: ["Major League Hacking", "Google Gemini", "₹22,221+ prize pool"],
+    highlights: ["50 university students", "Major League Hacking", "Google Gemini", "₹22,221+ prize pool"],
     url: "https://hackday.butwalhacks.com",
     image: "/events/hackday-butwal.svg",
     imageAlt: "Placeholder graphic for HackDay Butwal. Event photos coming soon.",
