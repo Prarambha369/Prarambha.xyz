@@ -271,7 +271,7 @@ export const projects: Project[] = [
     category: "Apps",
     tags: ["Sports", "News", "Open data"],
     description:
-      "Sports news and scores hub built only on licensed, public data: BBC Sport and ESPN headlines refreshed every 3 hours by a GitHub Action, latest results and next fixtures from TheSportsDB, and highlights from the leagues' own YouTube channels.",
+      "Sports news and scores hub built on public data offered for reuse: ESPN headlines across 12 sports refreshed every 3 hours by a GitHub Action, latest results and next fixtures from TheSportsDB, and highlights from the leagues' own YouTube channels. No streams.",
     stack: ["JavaScript", "Python", "GitHub Actions", "TheSportsDB API"],
     year: 2026,
     liveUrl: "https://prarambha369.github.io/sports-hub/",
