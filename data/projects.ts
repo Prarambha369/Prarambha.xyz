@@ -43,6 +43,12 @@ export interface Project {
   setupUrl?: string;
   /** Repo default branch, used for the "Source .zip" link. Defaults to "main". */
   defaultBranch?: string;
+  /** Square logo in public/projects/. Cards fall back to a monogram. */
+  logo?: string;
+  /** 16:9 banner or screenshot in public/projects/. Cards fall back to a generated banner. */
+  banner?: string;
+  /** "contain" for banners that aren't 16:9 (letterboxed instead of cropped). */
+  bannerFit?: "cover" | "contain";
   /** One-line runtime requirements, e.g. "Android 8.0+". */
   requirements?: string;
   /** Separate builds of the same project, e.g. per browser. Replaces the single download/setup links. */
@@ -56,6 +62,8 @@ export const projects: Project[] = [
   // ── Featured ────────────────────────────────────────────────────────────
   {
     id: "butwal-hacks",
+    logo: "/projects/butwal-hacks-logo.webp",
+    banner: "/projects/butwal-hacks-banner.webp",
     title: "Butwal Hacks",
     category: "Community",
     tags: ["Community", "Platform", "Next.js"],
@@ -71,6 +79,9 @@ export const projects: Project[] = [
   },
   {
     id: "hisab-sathi",
+    logo: "/projects/hisab-sathi-logo.webp",
+    banner: "/projects/hisab-sathi-banner.webp",
+    bannerFit: "contain",
     title: "Hisab Sathi",
     category: "Apps",
     tags: ["Android", "Kotlin", "Offline-first"],
@@ -90,6 +101,7 @@ export const projects: Project[] = [
   },
   {
     id: "mistertube",
+    logo: "/projects/mistertube-logo.webp",
     title: "MisterTube",
     category: "Extensions",
     tags: ["Browser Extension", "OSS"],
@@ -120,6 +132,8 @@ export const projects: Project[] = [
   },
   {
     id: "chikem-mod",
+    logo: "/projects/chikem-mod-logo.webp",
+    banner: "/projects/chikem-mod-banner.webp",
     title: "Chikem Mod",
     category: "Games",
     tags: ["Minecraft", "Fabric", "Java"],
@@ -140,6 +154,8 @@ export const projects: Project[] = [
   // ── Community & events ──────────────────────────────────────────────────
   {
     id: "hackday-butwal",
+    logo: "/projects/hackday-butwal-logo.webp",
+    banner: "/projects/hackday-butwal-banner.webp",
     title: "HackDay Butwal",
     category: "Community",
     tags: ["Hackathon", "MLH", "React"],
@@ -155,6 +171,7 @@ export const projects: Project[] = [
   },
   {
     id: "cyberutsav-lumbini",
+    logo: "/projects/cyberutsav-lumbini-logo.webp",
     title: "CyberUtsav Lumbini",
     category: "Community",
     tags: ["Cybersecurity", "Event", "Next.js"],
@@ -169,6 +186,7 @@ export const projects: Project[] = [
   },
   {
     id: "hack-club-butwal",
+    logo: "/projects/hack-club-butwal-logo.webp",
     title: "Hack Club Butwal",
     category: "Community",
     tags: ["Hack Club", "Website"],
@@ -201,6 +219,7 @@ export const projects: Project[] = [
   },
   {
     id: "color-wheel",
+    banner: "/projects/color-wheel-banner.webp",
     title: "ColorWheel",
     category: "Apps",
     tags: ["React", "Canvas", "Math"],
@@ -215,6 +234,7 @@ export const projects: Project[] = [
   },
   {
     id: "mrfonts",
+    banner: "/projects/mrfonts-banner.webp",
     title: "MrFonts",
     category: "Apps",
     tags: ["Web", "Fonts"],
@@ -274,6 +294,8 @@ export const projects: Project[] = [
   },
   {
     id: "muisckm",
+    logo: "/projects/muisckm-logo.webp",
+    banner: "/projects/muisckm-banner.webp",
     title: "Muisckm",
     category: "Apps",
     tags: ["Music", "Hack Club", "YSWS"],
@@ -304,6 +326,9 @@ export const projects: Project[] = [
   // ── Extensions ──────────────────────────────────────────────────────────
   {
     id: "battery-safety",
+    logo: "/projects/battery-safety-logo.webp",
+    banner: "/projects/battery-safety-banner.webp",
+    bannerFit: "contain",
     title: "Battery Safety",
     category: "Extensions",
     tags: ["GNOME Shell", "Linux"],
@@ -320,6 +345,7 @@ export const projects: Project[] = [
   },
   {
     id: "pirate-translator",
+    banner: "/projects/pirate-translator-banner.webp",
     title: "Pirate Translator",
     category: "Extensions",
     tags: ["Bookmarklet", "Fun"],
@@ -369,6 +395,7 @@ export const projects: Project[] = [
   // ── Games ───────────────────────────────────────────────────────────────
   {
     id: "bagh-chal",
+    banner: "/projects/bagh-chal-banner.webp",
     title: "Bagh-Chal",
     category: "Games",
     tags: ["Nepal", "Board game"],
@@ -383,6 +410,7 @@ export const projects: Project[] = [
   },
   {
     id: "shiny-octo",
+    banner: "/projects/shiny-octo-banner.webp",
     title: "Shiny Octo",
     category: "Games",
     tags: ["Browser game"],
