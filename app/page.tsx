@@ -43,7 +43,7 @@ export default function Home() {
           <h2 className="font-display font-bold text-3xl md:text-4xl mb-12 max-w-2xl leading-tight">
             Hackathons and game jams, built from Butwal.
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {featuredEvents.map((event) => (
               <EventCard key={event.id} event={event} />
             ))}

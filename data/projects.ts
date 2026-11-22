@@ -171,15 +171,16 @@ export const projects: Project[] = [
   },
   {
     id: "cyberutsav-lumbini",
+    banner: "/projects/cyberutsav-lumbini-banner.webp",
     logo: "/projects/cyberutsav-lumbini-logo.webp",
     title: "CyberUtsav Lumbini",
     category: "Community",
     tags: ["Cybersecurity", "Event", "Next.js"],
     description:
-      "Pre-registration portal for the Lumbini provincial chapter of CyberUtsav, Nepal's biggest student hackathon series. Co-organized by Butwal Hacks; winners advance to the Kathmandu grand finale.",
+      "Pre-registration portal for CyberUtsav Lumbini, the Lumbini provincial chapter of Nepal's biggest student hackathon: free, 3 days in Butwal on January 15–17, 2027. Co-organized by Butwal Hacks; winning teams go straight to the Kathmandu Grand Finale.",
     stack: ["Next.js", "TypeScript"],
     year: 2026,
-    liveUrl: "https://cyber-utsav-lumbini-butwal.vercel.app",
+    liveUrl: "https://lumbini.cyberutsav.com",
     githubUrl: "https://github.com/Prarambha369/CyberUtsavLumbini",
     status: "live",
     setupUrl: "https://github.com/Prarambha369/CyberUtsavLumbini#-quick-start",

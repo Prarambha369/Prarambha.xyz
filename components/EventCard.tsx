@@ -16,6 +16,11 @@ export const EventCard = ({ event }: { event: EventItem }) => {
           unoptimized={event.image.endsWith(".svg")}
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
+        {event.upcoming && (
+          <span className="absolute top-3 left-3 font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded bg-primary text-black">
+            Upcoming
+          </span>
+        )}
         {event.placeholder && (
           <span className="absolute top-3 right-3 font-mono text-[10px] uppercase tracking-widest px-2 py-0.5 rounded border border-border-2 bg-bg/80 text-text-2">
             Photos soon
@@ -54,11 +59,15 @@ export const EventCard = ({ event }: { event: EventItem }) => {
             href={event.url}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={`Event site for ${event.title} (opens in a new tab)`}
-            className="mt-auto inline-flex items-center gap-1.5 text-xs font-mono text-text-muted hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            aria-label={`${event.ctaLabel ?? "Event site"} for ${event.title} (opens in a new tab)`}
+            className={
+              event.upcoming
+                ? "mt-auto self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-black transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                : "mt-auto inline-flex items-center gap-1.5 text-xs font-mono text-text-muted hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            }
           >
             <ExternalLink size={14} aria-hidden="true" />
-            Event site ↗
+            {event.ctaLabel ?? "Event site"} ↗
           </a>
         )}
       </div>

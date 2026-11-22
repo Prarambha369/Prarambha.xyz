@@ -12,9 +12,9 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
 };
 
-// Event structured data only for events with a verified date and venue.
+// Event structured data only for events with a verified date (venue falls back to the city).
 const eventSchema = events
-  .filter((e) => e.startDate && e.venue)
+  .filter((e) => e.startDate)
   .map((e) => ({
     "@type": "Event",
     name: e.title,
@@ -25,12 +25,13 @@ const eventSchema = events
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
-      name: e.venue,
+      name: e.venue ?? e.city,
       address: { "@type": "PostalAddress", addressLocality: "Butwal", addressCountry: "NP" },
     },
     organizer: { "@type": "Organization", name: e.organizer },
     performer: { "@id": personId },
     ...(e.url ? { url: e.url } : {}),
+    ...(e.upcoming ? { isAccessibleForFree: true } : {}),
   }));
 
 export default function EventsPage() {

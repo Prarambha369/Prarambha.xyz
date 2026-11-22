@@ -28,9 +28,33 @@ export interface EventItem {
   imageAlt: string;
   placeholder: boolean;
   featured?: boolean;
+  /** Not happened yet: shows an "Upcoming" badge and a registration CTA. */
+  upcoming?: boolean;
+  /** Label for the event link, e.g. "Pre-register". Defaults to "Event site". */
+  ctaLabel?: string;
 }
 
 export const events: EventItem[] = [
+  {
+    id: "cyberutsav-lumbini-2027",
+    title: "CyberUtsav Lumbini",
+    dateLabel: "January 15–17, 2027",
+    startDate: "2027-01-15",
+    endDate: "2027-01-17",
+    city: "Butwal, Nepal",
+    role: "Co-organizer",
+    organizer: "CyberUtsav with Butwal Hacks",
+    description:
+      "Free, 3-day student hackathon in Butwal: the Lumbini Provincial Chapter of Nepal's biggest student hackathon. Teams of 3; winners get direct entry to the Kathmandu Grand Finale. Venue to be announced.",
+    highlights: ["Free entry", "3 days", "Teams of 3", "Grand Finale entry"],
+    url: "https://lumbini.cyberutsav.com",
+    image: "/projects/cyberutsav-lumbini-banner.webp",
+    imageAlt: "CyberUtsav Lumbini website: free 3-day student hackathon in Butwal, January 15–17, 2027",
+    placeholder: false,
+    featured: true,
+    upcoming: true,
+    ctaLabel: "Pre-register",
+  },
   {
     id: "hackday-butwal",
     title: "HackDay Butwal",
