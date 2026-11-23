@@ -12,7 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/events" },
 };
 
-// Event structured data only for events with a verified date (venue falls back to the city).
+// Event structured data only for events with a verified date. The place name is
+// emitted only for a verified venue; otherwise the location is just the address.
 const eventSchema = events
   .filter((e) => e.startDate)
   .map((e) => ({
@@ -25,8 +26,12 @@ const eventSchema = events
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     location: {
       "@type": "Place",
-      name: e.venue ?? e.city,
-      address: { "@type": "PostalAddress", addressLocality: "Butwal", addressCountry: "NP" },
+      ...(e.venue ? { name: e.venue } : {}),
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: e.city.split(",")[0].trim(),
+        addressCountry: "NP",
+      },
     },
     organizer: { "@type": "Organization", name: e.organizer },
     performer: { "@id": personId },
