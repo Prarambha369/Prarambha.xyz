@@ -31,7 +31,12 @@ export function GET() {
     ),
     "",
     "## Events",
-    ...events.map((e) => `- ${e.title} (${e.dateLabel}, ${e.city}), ${e.role}: ${e.description}`),
+    ...events.map(
+      (e) =>
+        `- ${e.title} (${e.dateLabel}, ${e.venue ? `${e.venue}, ` : ""}${e.city}). Organized by ${e.organizers
+          .map((o) => o.name)
+          .join(", ")}${e.sponsors?.length ? `; partners: ${e.sponsors.map((o) => o.name).join(", ")}` : ""}. My role: ${e.role}. ${e.description}`,
+    ),
     "",
     "## Upstream contributions",
     ...contributions.map((c) => `- [${c.repo}](${c.url}): ${c.summary}`),

@@ -8,6 +8,13 @@
 // To use a real photo, drop it into public/events/ and point `image` at it,
 // then set `placeholder: false` and write a real `imageAlt`.
 
+export interface EventOrg {
+  name: string;
+  url?: string;
+  /** One of my own organizations; links the event to its site-wide schema node (lib/seo.ts ORGS). */
+  ref?: "butwal-hacks" | "nextera-development";
+}
+
 export interface EventItem {
   id: string;
   title: string;
@@ -20,7 +27,11 @@ export interface EventItem {
   venue?: string;
   city: string;
   role: string;
-  organizer: string;
+  /** True when I was one of the organizers (adds me as a Person organizer in structured data). */
+  iOrganized: boolean;
+  organizers: EventOrg[];
+  /** Main partners/sponsors, as listed on the event's own site. */
+  sponsors?: EventOrg[];
   description: string;
   highlights: string[];
   url?: string;
@@ -43,7 +54,8 @@ export const events: EventItem[] = [
     endDate: "2027-01-17",
     city: "Butwal, Nepal",
     role: "Co-organizer",
-    organizer: "CyberUtsav with Butwal Hacks",
+    iOrganized: true,
+    organizers: [{ name: "CyberUtsav", url: "https://cyberutsav.com" }, { name: "Butwal Hacks", url: "https://butwalhacks.com", ref: "butwal-hacks" }],
     description:
       "Free, 3-day student hackathon in Butwal: the Lumbini Provincial Chapter of Nepal's biggest student hackathon. Teams of 3; winners get direct entry to the Kathmandu Grand Finale. Venue to be announced.",
     highlights: ["Free entry", "3 days", "Teams of 3", "Grand Finale entry"],
@@ -63,7 +75,13 @@ export const events: EventItem[] = [
     venue: "Lumbini World School",
     city: "Butwal, Nepal",
     role: "Organizer",
-    organizer: "Butwal Hacks",
+    iOrganized: true,
+    organizers: [{ name: "Butwal Hacks", url: "https://butwalhacks.com", ref: "butwal-hacks" }],
+    sponsors: [
+      { name: "Major League Hacking", url: "https://mlh.io" },
+      { name: "Google Gemini", url: "https://gemini.google.com" },
+      { name: "iCAN Education Services" },
+    ],
     description:
       "One-day, beginner-friendly student hackathon run with Major League Hacking and Google Gemini. Theme: Creativity with caffeine.",
     highlights: ["50 university students", "Major League Hacking", "Google Gemini", "₹22,221+ prize pool"],
@@ -82,7 +100,8 @@ export const events: EventItem[] = [
     venue: "Arambha Resort",
     city: "Butwal, Nepal",
     role: "Organizer",
-    organizer: "Butwal Hacks with Hack Club",
+    iOrganized: true,
+    organizers: [{ name: "Butwal Hacks", url: "https://butwalhacks.com", ref: "butwal-hacks" }, { name: "Hack Club", url: "https://hackclub.com" }],
     description:
       "24-hour game jam for high-school and upper-middle-school students, the Butwal edition of Hack Club's global Daydream.",
     highlights: ["24-hour game jam", "42 teens", "Hack Club Daydream"],
@@ -98,7 +117,8 @@ export const events: EventItem[] = [
     dateLabel: "2026",
     city: "Butwal, Nepal",
     role: "Core organizer",
-    organizer: "Lumbini Province Police",
+    iOrganized: true,
+    organizers: [{ name: "Lumbini Province Police" }],
     description:
       "Nepal's first government hackathon, presented by Lumbini Province Police: a 36-hour sprint at Butwal Training Center on cybercrime, emergency response and public safety.",
     highlights: ["~80 participants", "36-hour sprint", "Government hackathon", "Public safety"],
@@ -113,7 +133,8 @@ export const events: EventItem[] = [
     dateLabel: "2025",
     city: "Kathmandu, Nepal",
     role: "Bid contributor & volunteer",
-    organizer: "Ubuntu community",
+    iOrganized: false,
+    organizers: [{ name: "UbuCon Asia", url: "https://2025.ubucon.asia" }],
     description:
       "Contributed to the Kathmandu bid for UbuCon Asia 2025 and volunteered on-site at the conference.",
     highlights: ["Ubuntu", "Open source", "Volunteer"],
@@ -127,7 +148,8 @@ export const events: EventItem[] = [
     dateLabel: "Butwal meetup",
     city: "Butwal, Nepal",
     role: "Co-host",
-    organizer: "GNOME Nepal",
+    iOrganized: true,
+    organizers: [{ name: "GNOME Nepal", url: "https://nepal.gnome.org" }, { name: "PizzaDAO", url: "https://www.pizzadao.xyz" }],
     description:
       "Community meetup in Butwal co-hosted with GNOME Nepal and PizzaDAO, bringing local open-source enthusiasts together.",
     highlights: ["GNOME Nepal", "PizzaDAO", "Community"],
@@ -141,7 +163,8 @@ export const events: EventItem[] = [
     dateLabel: "April – September 2025",
     city: "Butwal, Nepal",
     role: "Club president & founder",
-    organizer: "Hack Club Butwal",
+    iOrganized: true,
+    organizers: [{ name: "Hack Club Butwal" }, { name: "Hack Club", url: "https://hackclub.com" }],
     description:
       "Hands-on workshops for beginner developers at the Hack Club Butwal student chapter, including Boba, Swirl and HackCraft.",
     highlights: ["Boba", "Swirl", "HackCraft"],

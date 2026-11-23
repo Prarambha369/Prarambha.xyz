@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { EventCard } from "@/components/EventCard";
 import { CtaBanner } from "@/components/CtaBanner";
 import { JsonLd } from "@/components/JsonLd";
-import { events } from "@/data/events";
-import { personId } from "@/lib/seo";
+import { events, type EventOrg } from "@/data/events";
+import { PERSON, SITE_URL, orgId, personId } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Events",
@@ -11,6 +11,13 @@ export const metadata: Metadata = {
     "Hackathons, game jams and community events organized or supported by Prarambha Bashyal in Butwal and Kathmandu: HackDay Butwal, Daydream Butwal, Hack4Safety 2083 and more.",
   alternates: { canonical: "/events" },
 };
+
+const orgNode = (o: EventOrg) => ({
+  "@type": "Organization",
+  ...(o.ref ? { "@id": orgId(o.ref) } : {}),
+  name: o.name,
+  ...(o.url ? { url: o.url } : {}),
+});
 
 // Event structured data only for events with a verified date. The place name is
 // emitted only for a verified venue; otherwise the location is just the address.
@@ -33,8 +40,11 @@ const eventSchema = events
         addressCountry: "NP",
       },
     },
-    organizer: { "@type": "Organization", name: e.organizer },
-    performer: { "@id": personId },
+    organizer: [
+      ...e.organizers.map(orgNode),
+      ...(e.iOrganized ? [{ "@type": "Person", "@id": personId, name: PERSON.name, url: SITE_URL }] : []),
+    ],
+    ...(e.sponsors?.length ? { sponsor: e.sponsors.map(orgNode) } : {}),
     ...(e.url ? { url: e.url } : {}),
     ...(e.upcoming ? { isAccessibleForFree: true } : {}),
   }));

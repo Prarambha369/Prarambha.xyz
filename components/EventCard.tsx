@@ -1,7 +1,30 @@
 import React from "react";
 import Image from "next/image";
 import { Calendar, ExternalLink, MapPin } from "lucide-react";
-import type { EventItem } from "@/data/events";
+import type { EventItem, EventOrg } from "@/data/events";
+
+const OrgList = ({ orgs, label }: { orgs: EventOrg[]; label: string }) => (
+  <p className="text-xs text-text-2 leading-relaxed">
+    <span className="font-mono text-[10px] uppercase tracking-widest text-text-muted mr-1.5">{label}</span>
+    {orgs.map((o, i) => (
+      <React.Fragment key={o.name}>
+        {i > 0 && (i === orgs.length - 1 ? " & " : ", ")}
+        {o.url ? (
+          <a
+            href={o.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text hover:text-primary underline decoration-border-2 underline-offset-2 transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            {o.name}
+          </a>
+        ) : (
+          <span className="text-text">{o.name}</span>
+        )}
+      </React.Fragment>
+    ))}
+  </p>
+);
 
 export const EventCard = ({ event }: { event: EventItem }) => {
   return (
@@ -43,7 +66,11 @@ export const EventCard = ({ event }: { event: EventItem }) => {
             {event.venue ? `${event.venue}, ${event.city}` : event.city}
           </span>
         </div>
-        <p className="text-sm text-text-2 leading-relaxed mb-5 flex-grow">{event.description}</p>
+        <p className="text-sm text-text-2 leading-relaxed mb-4 flex-grow">{event.description}</p>
+        <div className="flex flex-col gap-1.5 mb-5">
+          <OrgList label="Organized by" orgs={event.organizers} />
+          {event.sponsors && event.sponsors.length > 0 && <OrgList label="Partners" orgs={event.sponsors} />}
+        </div>
         <div className="flex flex-wrap gap-1.5 mb-5">
           {event.highlights.map((h) => (
             <span
