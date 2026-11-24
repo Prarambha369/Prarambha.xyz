@@ -71,6 +71,22 @@ export const EventCard = ({ event }: { event: EventItem }) => {
           <OrgList label="Organized by" orgs={event.organizers} />
           {event.sponsors && event.sponsors.length > 0 && <OrgList label="Partners" orgs={event.sponsors} />}
         </div>
+        {event.gallery && event.gallery.length > 0 && (
+          <ul className="flex gap-2 mb-5" aria-label={`More photos from ${event.title}`}>
+            {event.gallery.map((g) => (
+              <li key={g.src}>
+                <a
+                  href={g.src}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="relative block w-20 h-14 rounded-md overflow-hidden border border-border hover:border-primary/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  <Image src={g.src} alt={g.alt} fill sizes="5rem" className="object-cover" />
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="flex flex-wrap gap-1.5 mb-5">
           {event.highlights.map((h) => (
             <span
@@ -81,22 +97,36 @@ export const EventCard = ({ event }: { event: EventItem }) => {
             </span>
           ))}
         </div>
-        {event.url && (
-          <a
-            href={event.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${event.ctaLabel ?? "Event site"} for ${event.title} (opens in a new tab)`}
-            className={
-              event.upcoming
-                ? "mt-auto self-start inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-black transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-                : "mt-auto inline-flex items-center gap-1.5 text-xs font-mono text-text-muted hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
-            }
-          >
-            <ExternalLink size={14} aria-hidden="true" />
-            {event.ctaLabel ?? "Event site"} ↗
-          </a>
-        )}
+        <div className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-2">
+          {event.url && (
+            <a
+              href={event.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${event.ctaLabel ?? "Event site"} for ${event.title} (opens in a new tab)`}
+              className={
+                event.upcoming
+                  ? "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-primary/50 text-primary hover:bg-primary hover:text-black transition-colors text-xs font-mono focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+                  : "inline-flex items-center gap-1.5 text-xs font-mono text-text-muted hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+              }
+            >
+              <ExternalLink size={14} aria-hidden="true" />
+              {event.ctaLabel ?? "Event site"} ↗
+            </a>
+          )}
+          {event.postUrl && (
+            <a
+              href={event.postUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`My LinkedIn post about ${event.title} (opens in a new tab)`}
+              className="inline-flex items-center gap-1.5 text-xs font-mono text-text-muted hover:text-primary transition-colors rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg"
+            >
+              <ExternalLink size={14} aria-hidden="true" />
+              LinkedIn post ↗
+            </a>
+          )}
+        </div>
       </div>
     </article>
   );

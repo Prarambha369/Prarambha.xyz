@@ -17,7 +17,7 @@ export const faq: FaqItem[] = [
   },
   {
     q: "Which events has Prarambha organized?",
-    a: "Daydream Butwal, a 24-hour game jam for teens on October 10–11, 2025; HackDay Butwal, a Major League Hacking and Google Gemini hackathon for 50 university students on January 17, 2026; and Hack4Safety 2083 with Lumbini Province Police, where he was a core organizer of the 36-hour hackathon for around 80 participants.",
+    a: "Daydream Butwal, a 24-hour game jam for teens on October 17–18, 2025; HackDay Butwal, a Major League Hacking and Google Gemini hackathon for 50 university students on January 17, 2026; and Hack4Safety 2083 with Lumbini Province Police, where he was a core organizer of the 36-hour hackathon for around 80 participants.",
   },
   {
     q: "What open-source projects has he built?",
