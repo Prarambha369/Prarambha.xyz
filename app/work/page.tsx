@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { projects, projectCategories } from "@/data/projects";
+import { CtaBanner } from "@/components/CtaBanner";
 import { ProjectCard } from "@/components/ProjectCard";
 
 export default function Work() {
@@ -12,6 +13,7 @@ export default function Work() {
     filter === "All" ? projects : projects.filter((p) => p.category === filter);
 
   return (
+    <>
     <div className="pt-32 pb-24 px-6 max-w-6xl mx-auto">
       <div className="mb-16">
         <p className="font-mono text-[10px] tracking-widest uppercase text-primary mb-4">
@@ -52,5 +54,13 @@ export default function Work() {
         ))}
       </div>
     </div>
+    <CtaBanner
+      eyebrow="// COLLABORATE"
+      title="Want to build, fork or ship one of these together?"
+      body="Every project is open source. Open an issue or PR, or reach out about internships and collaborations."
+      primary={{ label: "Get in touch", href: "/contact" }}
+      secondary={{ label: "GitHub profile ↗", href: "https://github.com/Prarambha369", external: true }}
+    />
+    </>
   );
 }
