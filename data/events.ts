@@ -46,7 +46,7 @@ export interface EventItem {
   ctaLabel?: string;
   /** My LinkedIn post about the event. */
   postUrl?: string;
-  /** Extra photos shown as thumbnails under the description. */
+  /** Extra photos shown as thumbnails under the description; open in an in-page viewer. */
   gallery?: { src: string; alt: string }[];
 }
 
@@ -92,9 +92,14 @@ export const events: EventItem[] = [
     highlights: ["50 university students", "Major League Hacking", "Google Gemini", "₹22,221+ prize pool"],
     url: "https://hackday.butwalhacks.com",
     postUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7421386240823910400/",
-    image: "/events/hackday-butwal.svg",
-    imageAlt: "Placeholder graphic for HackDay Butwal. Event photos coming soon.",
-    placeholder: true,
+    image: "/events/hackday-butwal.webp",
+    imageAlt: "Students working on laptops at their tables during HackDay Butwal",
+    placeholder: false,
+    gallery: [
+      { src: "/events/hackday-butwal-wall.webp", alt: "An attendee in front of the HackDay Butwal sponsor wall" },
+      { src: "/events/hackday-butwal-hacking.webp", alt: "Two participants coding side by side at HackDay Butwal" },
+      { src: "/events/hackday-butwal-demo.webp", alt: "Two people at the podium with a laptop at HackDay Butwal" },
+    ],
     featured: true,
   },
   {
@@ -113,9 +118,14 @@ export const events: EventItem[] = [
     highlights: ["24-hour game jam", "42 teens", "Hack Club Daydream"],
     url: "https://daydream.hackclub.com/butwal",
     postUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7397914814150492160/",
-    image: "/events/daydream-butwal.svg",
-    imageAlt: "Placeholder graphic for Daydream Butwal. Event photos coming soon.",
-    placeholder: true,
+    image: "/events/daydream-butwal.webp",
+    imageAlt: "A participant standing in front of the Daydream Butwal 2025 banner",
+    placeholder: false,
+    gallery: [
+      { src: "/events/daydream-butwal-prizes.webp", alt: "Medals and prizes laid out on a red table at Daydream Butwal" },
+      { src: "/events/daydream-butwal-laptop.webp", alt: "A sticker-covered laptop with Hack Club and open-source stickers at Daydream Butwal" },
+      { src: "/events/daydream-butwal-team.webp", alt: "Two attendees at Daydream Butwal, one in a GitHub Campus Expert shirt" },
+    ],
     featured: true,
   },
   {
@@ -131,9 +141,14 @@ export const events: EventItem[] = [
       "Nepal's first government hackathon, presented by Lumbini Province Police: a 36-hour sprint at Butwal Training Center on cybercrime, emergency response and public safety. As a core organizer, I advised the police officers on how to run the hackathon.",
     highlights: ["~80 participants", "36-hour sprint", "Government hackathon", "Public safety"],
     postUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7482231928067158016/",
-    image: "/events/hack4safety-2083.svg",
-    imageAlt: "Placeholder graphic for Hack4Safety 2083. Event photos coming soon.",
-    placeholder: true,
+    image: "/events/hack4safety-2083.webp",
+    imageAlt: "Hack4Safety 2083 organizers and participants on stage in front of the event banners",
+    placeholder: false,
+    gallery: [
+      { src: "/events/hack4safety-2083-sign.webp", alt: "Hack4Safety 2083 Lumbini Province Police Hackathon sign at Butwal Training Center" },
+      { src: "/events/hack4safety-2083-award.webp", alt: "A Lumbini Province Police officer presenting a memento at Hack4Safety 2083" },
+      { src: "/events/hack4safety-2083-stage.webp", alt: "Lumbini Province Police officers on stage at the Hack4Safety 2083 opening" },
+    ],
     featured: true,
   },
   {
@@ -159,6 +174,8 @@ export const events: EventItem[] = [
     imageAlt: "Prarambha with the UbuCon Asia 2025 volunteer team in front of the Canonical Ubuntu sponsor wall",
     placeholder: false,
     gallery: [
+      { src: "/events/ubucon-asia-2025-booth.webp", alt: "Volunteers at the Canonical Ubuntu booth at UbuCon Asia 2025" },
+      { src: "/events/ubucon-asia-2025-crowd.webp", alt: "UbuCon Asia 2025 attendees and volunteers in a group photo at St. Xavier's College" },
       { src: "/events/ubucon-asia-2025-tea.webp", alt: "Volunteers serving tea to attendees under the UbuCon Asia 2025 banner" },
       { src: "/events/ubucon-asia-2025-bid.webp", alt: "UbuCon Asia 2025 Kathmandu bid team list on Launchpad, with Prarambha Bashyal's entry highlighted" },
     ],
@@ -192,9 +209,13 @@ export const events: EventItem[] = [
     description:
       "Hands-on workshops for beginner developers at the Hack Club Butwal student chapter, including Boba, Swirl and HackCraft.",
     highlights: ["Boba", "Swirl", "HackCraft"],
-    image: "/events/hack-club-workshops.svg",
-    imageAlt: "Placeholder graphic for Hack Club Butwal workshops. Photos coming soon.",
-    placeholder: true,
+    image: "/events/hack-club-butwal.webp",
+    imageAlt: "Hack Club Butwal members in school uniform posing together in a classroom",
+    placeholder: false,
+    gallery: [
+      { src: "/events/hack-club-butwal-app-dev.webp", alt: "A Hack Club Butwal member leading an app development session in the computer lab" },
+      { src: "/events/hack-club-butwal-git.webp", alt: "Git and GitHub workshop at Hack Club Butwal, with a member presenting from a laptop" },
+    ],
   },
 ];
 

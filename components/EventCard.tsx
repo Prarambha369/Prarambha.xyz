@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Calendar, ExternalLink, MapPin } from "lucide-react";
 import type { EventItem, EventOrg } from "@/data/events";
+import { EventGallery } from "@/components/EventGallery";
 
 const OrgList = ({ orgs, label }: { orgs: EventOrg[]; label: string }) => (
   <p className="text-xs text-text-2 leading-relaxed">
@@ -71,22 +72,7 @@ export const EventCard = ({ event }: { event: EventItem }) => {
           <OrgList label="Organized by" orgs={event.organizers} />
           {event.sponsors && event.sponsors.length > 0 && <OrgList label="Partners" orgs={event.sponsors} />}
         </div>
-        {event.gallery && event.gallery.length > 0 && (
-          <ul className="flex gap-2 mb-5" aria-label={`More photos from ${event.title}`}>
-            {event.gallery.map((g) => (
-              <li key={g.src}>
-                <a
-                  href={g.src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="relative block w-20 h-14 rounded-md overflow-hidden border border-border hover:border-primary/60 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                >
-                  <Image src={g.src} alt={g.alt} fill sizes="5rem" className="object-cover" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+        {event.gallery && event.gallery.length > 0 && <EventGallery title={event.title} photos={event.gallery} />}
         <div className="flex flex-wrap gap-1.5 mb-5">
           {event.highlights.map((h) => (
             <span
